@@ -152,8 +152,10 @@ export async function installReplay(): Promise<ReplayInfo | null> {
       if (path === "/v1/advisor/questions" && turn) asked.add(String(turn));
       return json(data, recorded.status);
     }
+    // The dashboard rechecks a saved answer whenever the looping readings move; a recheck not recorded keeps the answer as it is.
+    if (method === "POST" && /^\/v1\/advisor\/sessions\/[^/]+\/recheck$/.test(path)) return json({ status: "current" });
     const replayable = ["/v1/advisor/questions", "/v1/video/cameras/ask", "/v1/research/answer-review/run", "/v1/research/answer-review/baseline", "/v1/video/research/analyses", "/v1/controls/preview"];
-    if (method === "POST" && (replayable.includes(path) || /^\/v1\/advisor\/sessions\/[^/]+\/recheck$/.test(path))) return notAsked(path === "/v1/advisor/questions");
+    if (method === "POST" && replayable.includes(path)) return notAsked(path === "/v1/advisor/questions");
     void search;
     return refuse();
   }
