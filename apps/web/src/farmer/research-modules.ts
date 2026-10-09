@@ -53,6 +53,7 @@ const TEXT: Record<ModuleId, ModuleText> = {
     does: ["답을 상태 설명·행동 안내·관측 근거로 나누고, 바뀐 값에 기대는 부분만 다시 씁니다. 계속 바뀌면 새로 물어보라고 합니다.", "Splits the answer into state, action and evidence, and rewrites only the parts that depend on changed values. If values keep changing, it asks for a new question."],
     where: ["AI 상담 → 답 위 다시 확인 안내와 수정 전 보기, 답 아래 재확인", "AI advisor → the recheck note and Show previous above the answer, Recheck below it"],
     code: [
+      ["github.com/NAMUORI00/smartfarm-state-revalidation (연구용 실행 엔진과 평가)", "github.com/NAMUORI00/smartfarm-state-revalidation (research engine and evaluation)"],
       ["services/api/app/answer_review_core.py, declare_review(), affected_units()", "services/api/app/answer_review_core.py, declare_review(), affected_units()"],
       ["POST /v1/advisor/sessions/{id}/recheck (재확인 API, 비공개 저장소)", "POST /v1/advisor/sessions/{id}/recheck (recheck API, private repository)"],
     ],

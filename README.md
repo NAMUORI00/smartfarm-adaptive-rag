@@ -25,7 +25,7 @@
 | 연구 | 질의 적응형 검색 채널 제어: KCI 등재지 게재, 제1저자<br>근거 조건부 응답과 기권: IEEE Access 심사 중, 제1저자<br>센서 변화 기반 선택적 답변 수정: 석사학위논문 |
 | 주요 결과 | 공개 검색 벤치마크 3종에서 nDCG@10이 고정 프로파일 적응 융합보다 0.023~0.087 높았습니다(유의).<br>다시점 관제 영상에서 정답 공개율이 기권 프롬프트보다 41.2%p 높았고, 선택된 가용 시점 260개에서 오답을 공개하지 않았습니다.<br>전체 재생성과 같은 응답–상태 일치(110/110)를 유지하면서 다시 생성하는 답변 단위를 26.5% 줄였습니다. |
 | 구현 | 검색 코어, 승인형 설비 제어 서비스(MCP), 온실 텔레메트리 시뮬레이터(Python, FastAPI)<br>베드와 설비를 3D로 재현한 운영 대시보드(React, Three.js)<br>테스트 572개(Python 254, 웹 318) |
-| 저장소 | `main` 브랜치에 모듈과 배포 구성, [`demo`](https://github.com/NAMUORI00/smartfarm-adaptive-rag/tree/demo) 브랜치에 데모 기록과 GitHub Pages 배포가 있습니다. 영상 연구 코드는 [multiview-selective-vqa](https://github.com/NAMUORI00/multiview-selective-vqa)에 있습니다. |
+| 저장소 | `main` 브랜치에 모듈과 배포 구성, [`demo`](https://github.com/NAMUORI00/smartfarm-adaptive-rag/tree/demo) 브랜치에 데모 기록과 GitHub Pages 배포가 있습니다. 연구별 코드는 영상 응답이 [multiview-selective-vqa](https://github.com/NAMUORI00/multiview-selective-vqa), 선택적 답변 수정이 [smartfarm-state-revalidation](https://github.com/NAMUORI00/smartfarm-state-revalidation)에 있습니다. |
 
 ## 화면 구성
 
@@ -63,7 +63,7 @@
 1. 업무별 근거 경로를 나눈 운영 지원 구조. 문서 상담, 영상 확인, 상태 기반 답변을 같은 구역, 베드, 작업 이력에 연결하고 AI가 쓰는 설명과 설비 실행 권한을 나눴습니다. 설비 변경은 운영자가 허용한 뒤에도 적용 직전에 상태를 다시 읽고, 그사이 조건이 달라졌으면 실행하지 않습니다. ([`services/farm-mcp`](services/farm-mcp), [`apps/web`](apps/web))
 2. 질의 적응형 검색 채널 제어(QACT). 질의 특징과 채널별 후보 조건을 보고 의미 검색(Dense), 낱말 검색(Sparse), 관계 검색(Graph) 가운데 어느 것을 결합할지 정합니다. 운영 경로에는 체크섬을 고정한 릴리스, 코퍼스 스냅샷 해시 검증, 검증에 실패하면 Dense만 쓰는 안전 모드를 더했습니다. 공개 벤치마크 3종에서 nDCG@10이 고정 프로파일 적응 융합보다 0.023~0.087 높았습니다. ([`research_retrieval_algorithm.py`](services/api/app/research_retrieval_algorithm.py), [`knowledge.py`](services/api/app/knowledge.py))
 3. 근거 조건부 응답과 기권, 공개 판단. 모델을 부르기 전에 근거가 보일 가능성이 높은 카메라 시점을 고르고, 근거가 부족하면 기권하도록 학습한 모델로 답한 뒤, 검증된 공개 기준을 넘는 답만 공개합니다. 다시점 관제 영상에서 기권 프롬프트보다 정답 공개율이 41.2%p 높았고, 선택된 가용 시점 260개에서 오답을 공개하지 않았습니다. ([multiview-selective-vqa](https://github.com/NAMUORI00/multiview-selective-vqa))
-4. 센서 변화 기반 선택적 답변 수정. 답을 상태 설명, 행동 안내, 관측 근거로 나누고, 답을 쓰기 전에 각 부분이 어떤 관측에 기대는지 선언합니다. 상태가 바뀌면 그 값에 기대는 부분만 다시 쓰고 나머지는 그대로 둡니다. 결정론적 상태 변화 시나리오에서 전체 재생성과 같은 응답–상태 일치(110/110)를 유지하면서 다시 생성하는 답변 단위를 26.5% 줄였습니다. ([`answer_review_core.py`](services/api/app/answer_review_core.py))
+4. 센서 변화 기반 선택적 답변 수정. 답을 상태 설명, 행동 안내, 관측 근거로 나누고, 답을 쓰기 전에 각 부분이 어떤 관측에 기대는지 선언합니다. 상태가 바뀌면 그 값에 기대는 부분만 다시 쓰고 나머지는 그대로 둡니다. 결정론적 상태 변화 시나리오에서 전체 재생성과 같은 응답–상태 일치(110/110)를 유지하면서 다시 생성하는 답변 단위를 26.5% 줄였습니다. ([smartfarm-state-revalidation](https://github.com/NAMUORI00/smartfarm-state-revalidation), 제품 연결은 [`answer_review_core.py`](services/api/app/answer_review_core.py))
 
 검색과 영상 응답은 공개 데이터로, 선택적 답변 수정은 결정론적 시뮬레이션으로 평가했습니다. 실제 농장에서의 효과, 자유 형식 LLM 문장의 수정 품질, 토큰과 시간 비용, 세 기법을 함께 썼을 때의 효과는 아직 검증하지 않았습니다.
 
@@ -237,6 +237,8 @@ sequenceDiagram
 
 상담한 뒤 센서 값이 바뀌면 예전 답을 믿고 설비를 움직이는 실수가 생길 수 있습니다. [`answer_review_core.py`](services/api/app/answer_review_core.py)는 답을 상태 설명, 행동 안내, 관측 근거의 세 부분으로 나누고, 답을 만들기 전에 각 부분이 기대는 관측을 선언해 둡니다. 나중에 상태가 바뀌면 바뀐 값에 기대는 부분만 다시 씁니다. 생성된 문장을 읽어 판단하지는 않습니다.
 
+이 저장소에는 그 규칙을 상담 답변에 붙인 제품 쪽 코드가 있습니다. 실행 직전 재확인 엔진, 비교 조건(B0, B1, B2, SR), 사전에 고정한 시나리오와 평가 산출물은 [smartfarm-state-revalidation](https://github.com/NAMUORI00/smartfarm-state-revalidation)에 있습니다.
+
 ```mermaid
 flowchart LR
     S0["답할 때의 상태<br/>관측, 장치, 경보"] --> D["부분별 의존 선언<br/>declare_review()"]
@@ -276,7 +278,7 @@ flowchart LR
 |---|---|---|---|
 | 질의 적응형 검색 채널 제어 | 김유석, 김용운, 변영철, 「스마트팜 RAG를 위한 질의 적응형 검색 채널 제어」, *한국정보기술학회논문지*, 24(6), pp. 99–108, 2026. [doi:10.14801/jkiit.2026.24.6.99](https://doi.org/10.14801/jkiit.2026.24.6.99) | KCI 등재지 게재, 제1저자 | 이 저장소 [`services/api`](services/api) |
 | 근거 조건부 응답과 기권 | 김유석, 김용운, 변영철, "Role-Separated Selective Response for Question Answering in Multi-View Video Surveillance", *IEEE Access* | 심사 중, 제1저자 | [multiview-selective-vqa](https://github.com/NAMUORI00/multiview-selective-vqa) |
-| 선택적 답변 수정과 시스템 통합 | 김유석, 「적응형 검색과 선택적 답변 처리를 적용한 스마트팜 AI 운영 지원 시스템의 설계 및 구현」, 제주대학교 석사학위논문 | 작성 중(2027년 2월 예정) | 이 저장소 [`answer_review_core.py`](services/api/app/answer_review_core.py), [`apps/web`](apps/web) |
+| 선택적 답변 수정과 시스템 통합 | 김유석, 「적응형 검색과 선택적 답변 처리를 적용한 스마트팜 AI 운영 지원 시스템의 설계 및 구현」, 제주대학교 석사학위논문 | 작성 중(2027년 2월 예정) | [smartfarm-state-revalidation](https://github.com/NAMUORI00/smartfarm-state-revalidation), 이 저장소 [`answer_review_core.py`](services/api/app/answer_review_core.py), [`apps/web`](apps/web) |
 
 논문의 채널 제어를 운영 검색 경로에 붙이면서 체크섬 고정 릴리스, 스냅샷 해시 검증, Graph 신뢰도 검사, Dense 안전 모드를 더했습니다. 실험 코드와 데이터, 결과표는 비공개 연구 저장소에 있습니다.
 
@@ -292,7 +294,7 @@ flowchart LR
 | 승인형 제어(FarmOps MCP) | MCP 도구 10개, 제안에서 승인, 시뮬레이션, 감사까지의 상태 관리, 역할과 내부 토큰, 농장 헤더 검사, 같은 설비 중복 요청 차단, 응답 유실 시 1회 재전송과 결과 대조, W3C WoT 형식 장치 프로필 | [`services/farm-mcp/app/`](services/farm-mcp/app), [`mcp_client.py`](services/api/app/mcp_client.py), [`wasabi-greenhouse-v1.json`](data/device-manifests/wasabi-greenhouse-v1.json) | AI 응답이 곧바로 설비 명령이 되는 경로가 없음. MCP가 응답하지 않으면 허용해도 실행되지 않음 |
 | 온실 시뮬레이터 | 펄라이트 고설베드 고추냉이 온실 모델, 장치 조작과 센서 변화의 인과 연결, 임계값 경보와 센서 상태 경보, 작물 위험 경보 구분, 시나리오 10종, 가상 시계, SQLite 상태 저장, 외부 수집 데이터 사전 검증(dry-run) | [`services/telemetry/app/`](services/telemetry/app), [`wasabi-prototype-v1.json`](data/scenarios/wasabi-prototype-v1.json) | 실제 장비 없이 경보 발생, 조치 제안, 허용, 환경 회복의 흐름을 재현 |
 | 운영 대시보드 | 온실 배치도와 AI 브리핑, 베드와 설비 3D 모형, 출처 번호가 붙은 상담, 설비 변경 확인과 허용 카드, 카메라 관제, 자료실과 근거 원문 읽기, 한국어와 영어, 기록 재생 모드 | [`apps/web/`](apps/web), [`replay.ts`](apps/web/src/demo/replay.ts) | 서버 없이 GitHub Pages에서 동작하는 데모. 웹 테스트 318개 |
-| 선택적 답변 수정 | 답을 상태 설명, 행동 안내, 관측 근거로 나누고 답하기 전에 각 부분이 기대는 관측을 선언해, 값이 바뀌면 그 부분만 다시 쓰는 규칙 | [`answer_review_core.py`](services/api/app/answer_review_core.py) | 정상 범위 안의 흔들림은 무시하고 범위 이탈, 품질 이상, 오래된 관측, 처음 보는 값은 다시 확인 |
+| 선택적 답변 수정 | 답을 상태 설명, 행동 안내, 관측 근거로 나누고 답하기 전에 각 부분이 기대는 관측을 선언해, 값이 바뀌면 그 부분만 다시 쓰는 규칙과 연구용 실행 엔진 | [`answer_review_core.py`](services/api/app/answer_review_core.py), [smartfarm-state-revalidation](https://github.com/NAMUORI00/smartfarm-state-revalidation) | 정상 범위 안의 흔들림은 무시하고 범위 이탈, 품질 이상, 오래된 관측, 처음 보는 값은 다시 확인 |
 | 테스트와 CI | 서비스별 회귀 테스트, 라우팅 기준 세트(golden suite), 웹 테스트, GitHub Actions | `services/*/tests/`, `apps/web/src/*.test.ts`, [`qact-routing-golden.json`](data/rag-eval/qact-routing-golden.json), [`ci.yml`](.github/workflows/ci.yml) | Python 254개, 웹 318개 통과 |
 
 구현에는 Codex와 Claude Code를 페어 프로그래밍 도구로 썼습니다. 요구사항, 설계 결정, 안전 경계, 검증 기준은 직접 정했고, 생성된 코드는 리뷰와 테스트로 확인했습니다.
@@ -443,6 +445,7 @@ smartfarm-adaptive-rag/
 - 비공개 연구 저장소에서 직접 작성한 코드를 골라 정리한 공개용 저장소입니다. 커밋 이력은 원본 개발 이력과 다릅니다.
 - 제품 API의 상담과 에이전트 처리(`main.py`), 학위논문 원고, 실험 산출물은 넣지 않았습니다. 이 저장소만으로 실시간 제품을 실행할 수는 없고, 대시보드는 기록 재생 모드로 동작합니다.
 - 영상 연구(근거가 충분할 때만 답하는 다중 시점 CCTV 질의응답)는 [multiview-selective-vqa](https://github.com/NAMUORI00/multiview-selective-vqa)에 있습니다.
+- 선택적 답변 수정 연구(실행 직전 재확인 엔진, 비교 조건, 시나리오, 평가 산출물)는 [smartfarm-state-revalidation](https://github.com/NAMUORI00/smartfarm-state-revalidation)에 있습니다.
 - 데모의 카메라 영상은 예시 사진을 첫 장면으로 영상 생성 모델(Wan 2.2 TI2V-5B, Apache-2.0)이 만든 장면입니다. 공개 데이터셋(AIHub 다시점 CCTV)은 연구 흐름에 쓰인 화면 일부만, 재배 자료는 목록과 답변이 인용한 쪽만 실었습니다.
 - 센서와 설비는 모두 시뮬레이터이며 실제 장비에는 연결하지 않습니다.
 - 라이선스: 따로 정하지 않았습니다(열람 목적 공개).
