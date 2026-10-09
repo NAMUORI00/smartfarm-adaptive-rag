@@ -1,0 +1,115 @@
+{
+  "version": "q4-8768-v1",
+  "sha256": "1d4fad00d7382867828edd4168b9e1de5dfd82e2450422f05fdc29626f59be97",
+  "model": "/models/farm-q4.glb",
+  "beds": [
+    {
+      "bedId": "bed-01",
+      "node": "rack_r1c1",
+      "source": [-8.22, -2.3],
+      "position": [-7.75, -4.5]
+    },
+    {
+      "bedId": "bed-02",
+      "node": "rack_r1c2",
+      "source": [-5.87, -2.3],
+      "position": [-4.65, -4.5]
+    },
+    {
+      "bedId": "bed-03",
+      "node": "rack_r1c3",
+      "source": [-3.52, -2.3],
+      "position": [-1.5499999999999998, -4.5]
+    },
+    {
+      "bedId": "bed-04",
+      "node": "rack_r1c4",
+      "source": [-1.17, -2.3],
+      "position": [1.5500000000000007, -4.5]
+    },
+    {
+      "bedId": "bed-05",
+      "node": "rack_r1c5",
+      "source": [1.18, -2.3],
+      "position": [4.65, -4.5]
+    },
+    {
+      "bedId": "bed-06",
+      "node": "rack_r1c6",
+      "source": [3.53, -2.3],
+      "position": [7.75, -4.5]
+    },
+    {
+      "bedId": "bed-07",
+      "node": "rack_r2c1",
+      "source": [-8.22, 0.4],
+      "position": [-7.75, 0.0]
+    },
+    {
+      "bedId": "bed-08",
+      "node": "rack_r2c2",
+      "source": [-5.87, 0.4],
+      "position": [-4.65, 0.0]
+    },
+    {
+      "bedId": "bed-09",
+      "node": "rack_r2c3",
+      "source": [-3.52, 0.4],
+      "position": [-1.5499999999999998, 0.0]
+    },
+    {
+      "bedId": "bed-10",
+      "node": "rack_r2c4",
+      "source": [-1.17, 0.4],
+      "position": [1.5500000000000007, 0.0]
+    },
+    {
+      "bedId": "bed-11",
+      "node": "rack_r2c5",
+      "source": [1.18, 0.4],
+      "position": [4.65, 0.0]
+    },
+    {
+      "bedId": "bed-12",
+      "node": "rack_r2c6",
+      "source": [3.53, 0.4],
+      "position": [7.75, 0.0]
+    },
+    {
+      "bedId": "bed-13",
+      "node": "rack_r3c1",
+      "source": [-8.22, 3.1],
+      "position": [-7.75, 4.5]
+    },
+    {
+      "bedId": "bed-14",
+      "node": "rack_r3c2",
+      "source": [-5.87, 3.1],
+      "position": [-4.65, 4.5]
+    },
+    {
+      "bedId": "bed-15",
+      "node": "rack_r3c3",
+      "source": [-3.52, 3.1],
+      "position": [-1.5499999999999998, 4.5]
+    },
+    {
+      "bedId": "bed-16",
+      "node": "rack_r3c4",
+      "source": [-1.17, 3.1],
+      "position": [1.5500000000000007, 4.5]
+    },
+    {
+      "bedId": "bed-17",
+      "node": "rack_r3c5",
+      "source": [1.18, 3.1],
+      "position": [4.65, 4.5]
+    },
+    {
+      "bedId": "bed-18",
+      "node": "rack_r3c6",
+      "source": [3.53, 3.1],
+      "position": [7.75, 4.5]
+    }
+  ]
+}

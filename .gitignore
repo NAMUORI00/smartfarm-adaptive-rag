@@ -19,3 +19,7 @@ venv/
 Thumbs.db
 .idea/
 .vscode/
+
+# Web dashboard
+node_modules/
+apps/web/dist/

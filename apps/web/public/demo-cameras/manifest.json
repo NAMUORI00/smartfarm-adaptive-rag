@@ -1,0 +1,295 @@
+{
+ "kind": "example",
+ "note_ko": "예시 영상입니다. 이 농장에는 아직 카메라가 설치되지 않아, 설치했을 때의 화면과 분석을 보여주기 위해 만든 장면입니다.",
+ "note_en": "Example footage. No cameras are installed on this farm yet; these scenes show what an installed camera and its analysis would look like.",
+ "images": {
+  "generator": "Codex CLI 0.153.4 built-in image generation",
+  "created_at": "2026-09-23",
+  "synthetic": true
+ },
+ "analysis": {
+  "analyzer": "Codex CLI 0.153.4 (gpt-6-astra) vision, answer-or-abstain prompt",
+  "created_at": "2026-09-23",
+  "precomputed": true
+ },
+ "cameras": [
+  {
+   "id": "cam-a1",
+   "label_ko": "A구역 통로",
+   "label_en": "Zone A aisle",
+   "zone_id": "zone-a",
+   "bed_id": null,
+   "col": -0.12,
+   "row": -0.12,
+   "angle": 35,
+   "image": "/demo-cameras/cam-a1.jpg",
+   "summary_ko": "양쪽 다단 재배대에 식물이 있으며, 오른쪽 일부 재배면에는 식물 없이 흰 배지만 보입니다.",
+   "summary_en": "Plants occupy the racks on both sides, while some visible growing surfaces on the right contain only white substrate.",
+   "questions": [
+    {
+     "id": "q1",
+     "question_ko": "식물이 없는 빈 재배단이 있습니까?",
+     "question_en": "Are any tiers empty (no plants)?",
+     "decision": "answer",
+     "answer_ko": "예, 오른쪽 재배대 일부 단의 보이는 구간에는 식물 없이 흰 배지만 있습니다.",
+     "answer_en": "Yes. Visible sections of some right-hand tiers contain white substrate without plants.",
+     "reason_ko": "오른쪽 앞쪽과 그 뒤쪽에 식물이 없는 재배면이 보입니다. 가려진 구간까지 단 전체가 비어 있는지는 확인할 수 없습니다.",
+     "reason_en": "Bare growing surfaces are visible at the front right and behind it. Hidden portions prevent confirmation that entire tiers are empty.",
+     "confidence": 0.98,
+     "box": [
+      0.73,
+      0.337,
+      0.27,
+      0.156
+     ],
+     "alert": false
+    },
+    {
+     "id": "q2",
+     "question_ko": "순환팬이 작동 중입니까?",
+     "question_en": "Is the circulation fan running?",
+     "decision": "abstain",
+     "answer_ko": null,
+     "answer_en": null,
+     "reason_ko": "뒷벽에 팬은 보이지만 회전을 입증하는 뚜렷한 움직임 흐림이 없어 정지 영상으로 작동 여부를 확인할 수 없습니다.",
+     "reason_en": "The rear-wall fan is visible, but no clear motion blur establishes rotation in this still frame.",
+     "confidence": 0.99,
+     "box": null,
+     "alert": false
+    },
+    {
+     "id": "q3",
+     "question_ko": "잎의 변색 징후가 보입니까?",
+     "question_en": "Are there visible leaf discoloration signs?",
+     "decision": "abstain",
+     "answer_ko": null,
+     "answer_en": null,
+     "reason_ko": "잎의 녹색 밝기 차이는 보이지만, 이 전경 영상에서는 조명에 의한 차이와 실제 변색을 명확히 구분할 수 없습니다.",
+     "reason_en": "Leaves vary in green brightness, but this wide view does not clearly distinguish lighting differences from discoloration.",
+     "confidence": 0.9,
+     "box": null,
+     "alert": false
+    }
+   ]
+  },
+  {
+   "id": "cam-a2",
+   "label_ko": "4번 베드 근접",
+   "label_en": "Bed 4 close-up",
+   "zone_id": "zone-a",
+   "bed_id": "bed-04",
+   "col": 4.0,
+   "row": 0.97,
+   "angle": -125,
+   "image": "/demo-cameras/cam-a2.jpg",
+   "summary_ko": "가까이 보이는 여러 잎의 가장자리가 황변하고 일부 잎이 재배대 밖으로 아래로 처져 있습니다.",
+   "summary_en": "Several nearby leaves have yellow margins, and some hang downward over the tray edge.",
+   "questions": [
+    {
+     "id": "q1",
+     "question_ko": "잎 끝이나 가장자리가 황변하고 있습니까?",
+     "question_en": "Are leaf tips or edges yellowing?",
+     "decision": "answer",
+     "answer_ko": "예, 앞쪽 잎의 가장자리와 끝부분에 황변이 보입니다.",
+     "answer_en": "Yes. Yellowing is visible along the margins and tips of foreground leaves.",
+     "reason_ko": "오른쪽 앞의 큰 잎은 가운데가 녹색이고 가장자리와 아래쪽 끝이 노란색입니다.",
+     "reason_en": "The large foreground leaf on the right has a green center and yellow margins and lower tip.",
+     "confidence": 0.99,
+     "box": [
+      0.61,
+      0.529,
+      0.191,
+      0.359
+     ],
+     "alert": true,
+     "finding_ko": "잎 가장자리 황변",
+     "finding_en": "Leaf edges yellowing",
+     "ask_ko": "고추냉이 잎이 누렇게 변하는 원인"
+    },
+    {
+     "id": "q2",
+     "question_ko": "잎이 아래로 처져 있습니까?",
+     "question_en": "Are leaves drooping?",
+     "decision": "answer",
+     "answer_ko": "예, 일부 앞쪽 잎이 재배대 가장자리 아래로 처져 있습니다.",
+     "answer_en": "Yes. Some foreground leaves hang downward below the tray edge.",
+     "reason_ko": "중앙 앞쪽 잎이 아래로 늘어져 끝부분이 재배대 바깥쪽을 향합니다.",
+     "reason_en": "The front-center leaf hangs downward with its tip outside the tray.",
+     "confidence": 0.99,
+     "box": [
+      0.412,
+      0.636,
+      0.081,
+      0.263
+     ],
+     "alert": true,
+     "finding_ko": "잎 처짐",
+     "finding_en": "Leaves drooping",
+     "ask_ko": "고추냉이 잎이 시들고 처지는 원인"
+    },
+    {
+     "id": "q3",
+     "question_ko": "황변의 원인이 보입니까?",
+     "question_en": "Is the cause of the yellowing visible?",
+     "decision": "abstain",
+     "answer_ko": null,
+     "answer_en": null,
+     "reason_ko": "황변과 처짐은 보이지만, 해당 증상의 원인을 특정할 직접적인 증거는 보이지 않습니다.",
+     "reason_en": "Yellowing and drooping are visible, but there is no direct visible evidence identifying their cause.",
+     "confidence": 0.99,
+     "box": null,
+     "alert": false
+    }
+   ]
+  },
+  {
+   "id": "cam-b1",
+   "label_ko": "B구역 재배열",
+   "label_en": "Zone B rows",
+   "zone_id": "zone-b",
+   "bed_id": null,
+   "col": 6.08,
+   "row": 3.08,
+   "angle": 210,
+   "image": "/demo-cameras/cam-b1.jpg",
+   "summary_ko": "중앙 재배대에는 식물이 밀집하고 양옆에는 빈 재배면이 보이며 오른쪽 끝에는 냉각 장치가 있습니다.",
+   "summary_en": "The central rack is densely planted, bare growing surfaces appear on either side, and a cooling unit stands at the far right.",
+   "questions": [
+    {
+     "id": "q1",
+     "question_ko": "어떤 재배대가 완전히 식재되어 있고 어떤 재배대가 비어 있습니까?",
+     "question_en": "Which beds are fully planted and which are empty?",
+     "decision": "answer",
+     "answer_ko": "중앙 다단 재배대의 보이는 재배면은 식물로 빽빽하게 채워져 있습니다. 왼쪽 앞쪽과 중앙 재배대 오른쪽 뒤의 보이는 재배면은 흰 배지만 있습니다. 가려진 부분을 포함한 완전 식재 여부는 확인할 수 없습니다.",
+     "answer_en": "Visible growing surfaces on the central multi-tier rack are densely planted. Visible surfaces at the front left and behind the central rack on its right contain only white substrate. Complete planting across hidden areas cannot be confirmed.",
+     "reason_ko": "중앙의 잎으로 덮인 재배면과 양옆의 식물 없는 흰 재배면을 구분할 수 있습니다. 재배대 번호는 보이지 않습니다.",
+     "reason_en": "Leaf-covered central surfaces are distinguishable from bare white surfaces on either side. No bed numbers are visible.",
+     "confidence": 0.97,
+     "box": [
+      0.0,
+      0.104,
+      0.863,
+      0.875
+     ],
+     "alert": false
+    },
+    {
+     "id": "q2",
+     "question_ko": "열 끝에 냉각 장치가 있습니까?",
+     "question_en": "Is the chiller unit present at the end of the row?",
+     "decision": "answer",
+     "answer_ko": "예, 오른쪽 열 끝에 배관이 연결된 냉각 장치가 보입니다.",
+     "answer_en": "Yes. A cooling unit with connected piping is visible at the right-hand end of the row.",
+     "reason_ko": "오른쪽 뒤에 전면 격자, 상단 팬, 연결 배관이 있는 장치가 보입니다. 모델이나 작동 상태는 확인할 수 없습니다.",
+     "reason_en": "A unit with a front grille, top fan, and connected piping is visible at the rear right. Its model and operating state cannot be confirmed.",
+     "confidence": 0.96,
+     "box": [
+      0.847,
+      0.19,
+      0.105,
+      0.24
+     ],
+     "alert": false
+    },
+    {
+     "id": "q3",
+     "question_ko": "냉각수가 흐르고 있습니까?",
+     "question_en": "Is coolant flowing?",
+     "decision": "abstain",
+     "answer_ko": null,
+     "answer_en": null,
+     "reason_ko": "배관 내부나 유량 표시가 보이지 않아 냉각수 흐름을 확인할 수 없습니다.",
+     "reason_en": "Neither the pipe interiors nor a flow readout is visible, so coolant flow cannot be confirmed.",
+     "confidence": 0.99,
+     "box": null,
+     "alert": false
+    }
+   ]
+  },
+  {
+   "id": "cam-e1",
+   "label_ko": "출입구",
+   "label_en": "Entrance",
+   "zone_id": "zone-b",
+   "bed_id": null,
+   "col": 0.62,
+   "row": 3.06,
+   "angle": -60,
+   "image": "/demo-cameras/cam-e1.jpg",
+   "summary_ko": "작업복과 흰 장화를 착용한 사람이 출입구의 노란 경계선을 걸쳐 서 있는 모습이 보입니다.",
+   "summary_en": "A person wearing work clothes and white boots is visible in a stepping posture straddling the yellow entrance boundary.",
+   "questions": [
+    {
+     "id": "q1",
+     "question_ko": "사람이 노란 경계선을 넘고 있습니까?",
+     "question_en": "Is a person crossing the yellow boundary line?",
+     "decision": "answer",
+     "answer_ko": "예, 한쪽 장화는 노란 경계선 앞쪽에 있고 다른 쪽은 출입구 안쪽에 있어 선을 넘는 자세가 보입니다.",
+     "answer_en": "Yes. One boot is beyond the yellow boundary and the other remains on the doorway side, showing a crossing posture.",
+     "reason_ko": "두 발이 노란 선의 서로 다른 쪽에 놓여 있습니다. 정지 영상이므로 이동 방향이나 연속 동작은 확인할 수 없습니다.",
+     "reason_en": "The feet are on opposite sides of the yellow line. The still frame does not establish movement direction or a continuous action.",
+     "confidence": 0.98,
+     "box": [
+      0.135,
+      0.663,
+      0.097,
+      0.244
+     ],
+     "alert": true,
+     "finding_ko": "출입 경계선 통과",
+     "finding_en": "Entry line crossed",
+     "ask_ko": "온실 출입 관리와 위생 수칙"
+    },
+    {
+     "id": "q2",
+     "question_ko": "사람이 작업복을 착용하고 있습니까?",
+     "question_en": "Is the person wearing work clothes?",
+     "decision": "answer",
+     "answer_ko": "예, 회색 작업복과 흰 장화를 착용하고 있습니다.",
+     "answer_en": "Yes. The person is wearing gray work clothes and white boots.",
+     "reason_ko": "가슴 주머니가 있는 회색 긴소매 상의, 같은 색 바지와 흰 장화가 보입니다.",
+     "reason_en": "A gray long-sleeved top with chest pockets, matching trousers, and white boots are visible.",
+     "confidence": 0.99,
+     "box": [
+      0.105,
+      0.333,
+      0.152,
+      0.558
+     ],
+     "alert": false
+    },
+    {
+     "id": "q3",
+     "question_ko": "출입이 허가된 사람입니까?",
+     "question_en": "Is the person authorised?",
+     "decision": "abstain",
+     "answer_ko": null,
+     "answer_en": null,
+     "reason_ko": "외모와 복장만으로 출입 권한을 판단할 수 없으며, 권한을 확인할 기록이나 인증 결과가 보이지 않습니다.",
+     "reason_en": "Appearance and clothing do not establish access authorization, and no access record or authentication result is visible.",
+     "confidence": 1.0,
+     "box": null,
+     "alert": false
+    }
+   ]
+  }
+ ],
+ "multiview": [
+  {
+   "id": "mv-a-leaf",
+   "zone_id": "zone-a",
+   "question_ko": "A구역 잎에 변색(황변)이 있습니까?",
+   "question_en": "Is there leaf discoloration (yellowing) in zone A?",
+   "candidates": [
+    {
+     "camera_id": "cam-a1",
+     "question_id": "q3"
+    },
+    {
+     "camera_id": "cam-a2",
+     "question_id": "q1"
+    }
+   ]
+  }
+ ]
+}
