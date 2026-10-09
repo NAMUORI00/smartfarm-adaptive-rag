@@ -1,0 +1,16 @@
+{
+  "source_repository": "private research reproducibility repository (not published)",
+  "research_lineage": "Extension of the KIIT study; not a KIIT performance claim",
+  "source_file": "packages/evidence/benchmarking/experiments/paper_eval.py",
+  "source_sha256": "1cba22c73fb93f949a2c1e8eb9cf43c8c87e7d4531692d1b159b2c9fb2da69c4",
+  "functions": [
+    "DEFAULT_STRUCTURAL_WEIGHTS",
+    "DENSE_FIRST_ADAPTIVE_GRAPH_THRESHOLD",
+    "DENSE_FIRST_ADAPTIVE_SPARSE_FALLBACK_MIN",
+    "DENSE_FIRST_UNIFORM_PROFILE_EPSILON",
+    "_normalize_channel_weights",
+    "dense_first_adaptive_route"
+  ],
+  "export_sha256": "313132b66b097b68d82a0960b75c37c5130db06298955704441e4ab39f6c1a98",
+  "claim_status": "algorithm_connection_only; deployment calibration required"
+}

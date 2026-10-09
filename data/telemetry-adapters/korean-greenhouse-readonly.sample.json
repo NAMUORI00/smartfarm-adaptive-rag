@@ -1,0 +1,17 @@
+{
+  "farm_id": "farm-wasabi-a",
+  "observed_at": "2026-07-29T00:00:00Z",
+  "message_id": "adapter-contract-sample-1",
+  "sequence": 1,
+  "source": "korean-greenhouse-readonly",
+  "simulated_only": false,
+  "readings": [
+    { "zone_id": "zone-a", "sensor_id": "air-temp-01", "metric": "air_temperature_c", "value": 17.2, "unit": "°C", "quality": "good" },
+    { "zone_id": "zone-a", "sensor_id": "humidity-01", "metric": "relative_humidity_pct", "value": 72.0, "unit": "%", "quality": "good" },
+    { "zone_id": "zone-a", "sensor_id": "root-temp-01", "metric": "root_zone_temperature_c", "value": 15.8, "unit": "°C", "quality": "good" },
+    { "zone_id": "zone-a", "sensor_id": "supply-ec-01", "metric": "supply_ec_ds_m", "value": 2.1, "unit": "dS/m", "quality": "good" },
+    { "zone_id": "zone-a", "sensor_id": "supply-ph-01", "metric": "supply_ph", "value": 6.2, "unit": "pH", "quality": "good" },
+    { "zone_id": "zone-a", "sensor_id": "moisture-01", "metric": "substrate_moisture_pct", "value": 58.0, "unit": "%", "quality": "good" },
+    { "zone_id": "zone-a", "sensor_id": "flow-01", "metric": "irrigation_flow_l_min", "value": 1.8, "unit": "L/min", "quality": "good" }
+  ]
+}

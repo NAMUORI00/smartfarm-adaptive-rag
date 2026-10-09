@@ -1,0 +1,314 @@
+{
+  "schema_version": 1,
+  "profile_id": "wasabi-greenhouse-v1",
+  "title": "스마트 온실 장치 프로필",
+  "description": "펄라이트 고설베드 시설의 장치와 센서 조정 capability를 운영자 화면과 내부 도구가 함께 사용하는 프로필입니다.",
+  "things": [
+    {
+      "@context": "https://www.w3.org/2022/wot/td/v1.1",
+      "@type": ["Thing", "SmartFarmActuator"],
+      "id": "urn:smartfarm:device-model:roof-vent:v1",
+      "title": "천창",
+      "description": "온실 상부 공기와 열을 배출하는 천창입니다.",
+      "properties": {
+        "openPercent": {
+          "title": "열림 정도",
+          "type": "number",
+          "minimum": 0,
+          "maximum": 100,
+          "unit": "%",
+          "readOnly": true,
+          "x-smartfarm": {"telemetryField": "roof_vent_open_pct"}
+        }
+      },
+      "actions": {
+        "setOpenPercent": {
+          "title": "천창 열림 조정",
+          "input": {"type": "number", "minimum": 0, "maximum": 100, "unit": "%"},
+          "x-smartfarm": {
+            "controlAction": "set_roof_vent_open_percent",
+            "requiresOperatorApproval": true,
+            "expectedEffects": ["환기량 증가", "온실 상부 열과 습기 배출"]
+          }
+        }
+      },
+      "events": {
+        "healthChanged": {"title": "천창 상태 변경", "data": {"type": "string"}}
+      },
+      "x-smartfarm": {
+        "deviceId": "roof_vent",
+        "operatorLabel": "천창",
+        "category": "ventilation",
+        "ksTtaMappings": ["KS X 3265", "KS X 3267", "KS X 3268", "TTAK.KO-10.1170"]
+      }
+    },
+    {
+      "@context": "https://www.w3.org/2022/wot/td/v1.1",
+      "@type": ["Thing", "SmartFarmActuator"],
+      "id": "urn:smartfarm:device-model:side-vent:v1",
+      "title": "측창",
+      "description": "온실 측면의 자연 환기량을 조정하는 측창입니다.",
+      "properties": {
+        "openPercent": {
+          "title": "열림 정도",
+          "type": "number",
+          "minimum": 0,
+          "maximum": 100,
+          "unit": "%",
+          "readOnly": true,
+          "x-smartfarm": {"telemetryField": "side_vent_open_pct"}
+        }
+      },
+      "actions": {
+        "setOpenPercent": {
+          "title": "측창 열림 조정",
+          "input": {"type": "number", "minimum": 0, "maximum": 100, "unit": "%"},
+          "x-smartfarm": {
+            "controlAction": "set_side_vent_open_percent",
+            "requiresOperatorApproval": true,
+            "expectedEffects": ["외기 유입 증가", "온실 습도와 공기 정체 완화"]
+          }
+        }
+      },
+      "events": {
+        "healthChanged": {"title": "측창 상태 변경", "data": {"type": "string"}}
+      },
+      "x-smartfarm": {
+        "deviceId": "side_vent",
+        "operatorLabel": "측창",
+        "category": "ventilation",
+        "ksTtaMappings": ["KS X 3265", "KS X 3267", "KS X 3268", "TTAK.KO-10.1170"]
+      }
+    },
+    {
+      "@context": "https://www.w3.org/2022/wot/td/v1.1",
+      "@type": ["Thing", "SmartFarmActuator"],
+      "id": "urn:smartfarm:device-model:shade-curtain:v1",
+      "title": "차광 커튼",
+      "description": "광량과 일사 열부하를 조절하는 차광 커튼입니다.",
+      "properties": {
+        "closedPercent": {
+          "title": "차광 정도",
+          "type": "number",
+          "minimum": 0,
+          "maximum": 100,
+          "unit": "%",
+          "readOnly": true,
+          "x-smartfarm": {"telemetryField": "thermal_curtain_pct"}
+        }
+      },
+      "actions": {
+        "setClosedPercent": {
+          "title": "차광 정도 조정",
+          "input": {"type": "number", "minimum": 0, "maximum": 100, "unit": "%"},
+          "x-smartfarm": {
+            "controlAction": "set_thermal_curtain_percent",
+            "requiresOperatorApproval": true,
+            "expectedEffects": ["광량 감소", "주간 일사 열부하 완화"]
+          }
+        }
+      },
+      "events": {
+        "healthChanged": {"title": "차광 커튼 상태 변경", "data": {"type": "string"}}
+      },
+      "x-smartfarm": {
+        "deviceId": "shade_curtain",
+        "operatorLabel": "차광 커튼",
+        "category": "light",
+        "ksTtaMappings": ["KS X 3265", "KS X 3267", "KS X 3268", "TTAK.KO-10.1170"]
+      }
+    },
+    {
+      "@context": "https://www.w3.org/2022/wot/td/v1.1",
+      "@type": ["Thing", "SmartFarmActuator"],
+      "id": "urn:smartfarm:device-model:circulation-fan:v1",
+      "title": "순환팬",
+      "description": "온실 내부 공기를 순환해 온습도 편차와 정체를 줄입니다.",
+      "properties": {
+        "outputPercent": {
+          "title": "팬 출력",
+          "type": "number",
+          "minimum": 0,
+          "maximum": 100,
+          "unit": "%",
+          "readOnly": true,
+          "x-smartfarm": {"telemetryField": "circulation_fan_pct"}
+        }
+      },
+      "actions": {
+        "setOutputPercent": {
+          "title": "순환팬 출력 조정",
+          "input": {"type": "number", "minimum": 0, "maximum": 100, "unit": "%"},
+          "x-smartfarm": {
+            "controlAction": "set_circulation_fan_percent",
+            "requiresOperatorApproval": true,
+            "expectedEffects": ["공기 순환 증가", "국부 과습과 온도 편차 완화"]
+          }
+        }
+      },
+      "events": {
+        "healthChanged": {"title": "순환팬 상태 변경", "data": {"type": "string"}}
+      },
+      "x-smartfarm": {
+        "deviceId": "ventilation_fan",
+        "operatorLabel": "순환팬",
+        "category": "ventilation",
+        "ksTtaMappings": ["KS X 3265", "KS X 3267", "KS X 3268", "TTAK.KO-10.1170"]
+      }
+    },
+    {
+      "@context": "https://www.w3.org/2022/wot/td/v1.1",
+      "@type": ["Thing", "SmartFarmActuator"],
+      "id": "urn:smartfarm:device-model:irrigation-pump:v1",
+      "title": "관수 펌프",
+      "description": "배지에 양액을 공급하는 제한 시간 관수 사이클을 시작합니다.",
+      "properties": {
+        "active": {
+          "title": "관수 상태",
+          "type": "boolean",
+          "unit": "boolean",
+          "readOnly": true,
+          "x-smartfarm": {"telemetryField": "irrigation_active"}
+        }
+      },
+      "actions": {
+        "startCycle": {
+          "title": "관수 사이클 시작",
+          "input": {"type": "boolean", "const": true, "unit": "boolean"},
+          "x-smartfarm": {
+            "controlAction": "start_irrigation_cycle",
+            "requiresOperatorApproval": true,
+            "expectedEffects": ["관수 유량과 압력 증가", "배지 수분 회복"]
+          }
+        }
+      },
+      "events": {
+        "cycleCompleted": {"title": "관수 사이클 완료", "data": {"type": "string"}},
+        "healthChanged": {"title": "관수 펌프 상태 변경", "data": {"type": "string"}}
+      },
+      "x-smartfarm": {
+        "deviceId": "irrigation_pump",
+        "operatorLabel": "관수 펌프",
+        "category": "fertigation",
+        "ksTtaMappings": ["KS X 3265", "KS X 3267", "KS X 3268", "TTAK.KO-10.1170", "TTAK.KO-10.1369-Part1"]
+      }
+    },
+    {
+      "@context": "https://www.w3.org/2022/wot/td/v1.1",
+      "@type": ["Thing", "SmartFarmActuator"],
+      "id": "urn:smartfarm:device-model:heater:v1",
+      "title": "난방기",
+      "description": "저온 시 온실 공기 온도를 높이는 난방기입니다.",
+      "properties": {
+        "enabled": {
+          "title": "가동 상태",
+          "type": "boolean",
+          "unit": "boolean",
+          "readOnly": true,
+          "x-smartfarm": {"telemetryField": "heating_enabled"}
+        }
+      },
+      "actions": {
+        "setEnabled": {
+          "title": "난방 가동 설정",
+          "input": {"type": "boolean", "unit": "boolean"},
+          "x-smartfarm": {
+            "controlAction": "set_heating_enabled",
+            "requiresOperatorApproval": true,
+            "expectedEffects": ["온실 공기 온도 상승", "저온 위험 완화"]
+          }
+        }
+      },
+      "events": {
+        "healthChanged": {"title": "난방기 상태 변경", "data": {"type": "string"}}
+      },
+      "x-smartfarm": {
+        "deviceId": "heater",
+        "operatorLabel": "난방기",
+        "category": "climate",
+        "ksTtaMappings": ["KS X 3265", "KS X 3267", "KS X 3268", "TTAK.KO-10.1170"]
+      }
+    },
+    {
+      "@context": "https://www.w3.org/2022/wot/td/v1.1",
+      "@type": ["Thing", "SmartFarmActuator"],
+      "id": "urn:smartfarm:device-model:root-zone-chiller:v1",
+      "title": "근권 냉각기",
+      "description": "고설베드 근권의 열을 제거해 배지 온도를 낮춥니다.",
+      "properties": {
+        "enabled": {
+          "title": "가동 상태",
+          "type": "boolean",
+          "unit": "boolean",
+          "readOnly": true,
+          "x-smartfarm": {"telemetryField": "cooling_enabled"}
+        }
+      },
+      "actions": {
+        "setEnabled": {
+          "title": "냉각 가동 설정",
+          "input": {"type": "boolean", "unit": "boolean"},
+          "x-smartfarm": {
+            "controlAction": "set_cooling_enabled",
+            "requiresOperatorApproval": true,
+            "expectedEffects": ["근권 온도 하강", "고온 누적 노출 완화"]
+          }
+        }
+      },
+      "events": {
+        "healthChanged": {"title": "근권 냉각기 상태 변경", "data": {"type": "string"}}
+      },
+      "x-smartfarm": {
+        "deviceId": "root_zone_chiller",
+        "operatorLabel": "근권 냉각기",
+        "category": "root-zone",
+        "ksTtaMappings": ["KS X 3265", "KS X 3267", "KS X 3268", "TTAK.KO-10.1170", "TTAK.KO-10.1369-Part1"]
+      }
+    },
+    {
+      "@context": "https://www.w3.org/2022/wot/td/v1.1",
+      "@type": ["Thing", "SmartFarmSensor"],
+      "id": "urn:smartfarm:device-model:air-temperature-sensor:v1",
+      "title": "공기 온도 센서",
+      "description": "온실 공기 온도를 관측하며 센서 건전성 이상 시 재보정할 수 있습니다.",
+      "properties": {
+        "temperature": {
+          "title": "공기 온도",
+          "type": "number",
+          "minimum": -40,
+          "maximum": 80,
+          "unit": "°C",
+          "readOnly": true,
+          "x-smartfarm": {"telemetryMetric": "air_temperature_c"}
+        },
+        "calibrated": {
+          "title": "보정 상태",
+          "type": "boolean",
+          "unit": "boolean",
+          "readOnly": true,
+          "x-smartfarm": {"telemetryField": "air_temperature_sensor_recalibrated"}
+        }
+      },
+      "actions": {
+        "recalibrate": {
+          "title": "온도 센서 다시 맞추기",
+          "input": {"type": "boolean", "const": true, "unit": "boolean"},
+          "x-smartfarm": {
+            "controlAction": "recalibrate_air_temperature_sensor",
+            "requiresOperatorApproval": true,
+            "expectedEffects": ["공기 온도 관측 편차 제거", "물리 환경에는 직접 영향 없음"]
+          }
+        }
+      },
+      "events": {
+        "qualityChanged": {"title": "센서 품질 변경", "data": {"type": "string"}}
+      },
+      "x-smartfarm": {
+        "deviceId": "air_temperature_sensor_reset",
+        "operatorLabel": "공기 온도 센서",
+        "category": "sensor",
+        "ksTtaMappings": ["KS X 3266", "KS X 3269", "TTAK.KO-10.1170", "TTAK.KO-10.1449"]
+      }
+    }
+  ]
+}

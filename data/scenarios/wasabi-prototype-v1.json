@@ -1,0 +1,277 @@
+{
+  "pack_id": "wasabi-prototype",
+  "version": "2026.07.1",
+  "max_active_scenarios": 2,
+  "max_zones": 2,
+  "profiles": [
+    {
+      "scenario_id": "normal",
+      "name_ko": "정상 운영 상태",
+      "description_ko": "장치와 센서가 검토된 시범 recipe 범위에서 연결된 상태입니다.",
+      "category": "normal",
+      "sensor_effects": [],
+      "device_effects": [],
+      "expected_alert_suffixes": [],
+      "provenance": [{
+        "source_id": "nongsaro-field-case-2026",
+        "source_class": "site_recipe",
+        "locator": "perlite high-bed field reference",
+        "note_ko": "고추냉이 고설베드 운영 범위의 방향성 근거입니다."
+      }]
+    },
+    {
+      "scenario_id": "root_cooling_fault",
+      "name_ko": "냉각기 정지",
+      "description_ko": "냉각 출력이 사라져 근권 온도가 상승합니다.",
+      "category": "equipment",
+      "sensor_effects": [{"metric": "root_zone_temperature_c", "target_value": 21.5}],
+      "device_effects": [{
+        "device_id": "root_zone_chiller",
+        "desired_value": true,
+        "reported_value": false,
+        "effective_value": false,
+        "health": "fault",
+        "response_delay_seconds": 0
+      }],
+      "recovery": {"actions": ["set_cooling_enabled"], "stable_seconds": 90},
+      "expected_alert_suffixes": [":root_zone_temperature_c:threshold:high"],
+      "provenance": [
+        {
+          "source_id": "jstage-wasabi-root-zone-temperature",
+          "source_class": "public_source",
+          "locator": "root-zone temperature findings",
+          "note_ko": "근권 온도 상승의 위험 방향 근거입니다."
+        },
+        {
+          "source_id": "synthetic:wasabi:simulation-policy:v1",
+          "source_class": "synthetic_assumption",
+          "locator": "ramp and recovery policy",
+          "note_ko": "시간과 효과 크기는 반복 가능한 시연을 위한 합성값입니다."
+        }
+      ]
+    },
+    {
+      "scenario_id": "irrigation_blockage",
+      "name_ko": "관수 사이클 중단",
+      "description_ko": "관수 출력과 유량이 사라져 배지 수분이 낮아집니다.",
+      "category": "irrigation",
+      "sensor_effects": [
+        {"metric": "substrate_moisture_pct", "target_value": 39.0},
+        {"metric": "irrigation_flow_l_min", "target_value": 0.0},
+        {"metric": "irrigation_pressure_bar", "target_value": 0.15},
+        {"metric": "pump_current_a", "target_value": 0.08}
+      ],
+      "device_effects": [{
+        "device_id": "irrigation_pump",
+        "desired_value": true,
+        "reported_value": false,
+        "effective_value": false,
+        "health": "fault",
+        "response_delay_seconds": 0
+      }],
+      "recovery": {"actions": ["start_irrigation_cycle"], "stable_seconds": 90},
+      "expected_alert_suffixes": [":irrigation-flow:crop-risk"],
+      "provenance": [
+        {
+          "source_id": "nongsaro-field-case-2026",
+          "source_class": "site_recipe",
+          "locator": "perlite high-bed fertigation",
+          "note_ko": "관수와 배지 수분 관리의 운영 방향 근거입니다."
+        },
+        {
+          "source_id": "synthetic:wasabi:simulation-policy:v1",
+          "source_class": "synthetic_assumption",
+          "note_ko": "장애 효과와 회복시간은 시연용 합성값입니다."
+        }
+      ]
+    },
+    {
+      "scenario_id": "high_humidity_stagnation",
+      "name_ko": "환기 설비 저출력",
+      "description_ko": "환기 출력 저하로 습도가 상승합니다.",
+      "category": "climate",
+      "sensor_effects": [{"metric": "relative_humidity_pct", "target_value": 94.0}],
+      "device_effects": [{
+        "device_id": "ventilation_fan",
+        "desired_value": 80.0,
+        "reported_value": 8.0,
+        "effective_value": 8.0,
+        "health": "degraded",
+        "response_delay_seconds": 0
+      }],
+      "recovery": {
+        "actions": ["set_circulation_fan_percent", "set_roof_vent_open_percent", "set_side_vent_open_percent"],
+        "minimum_percentage": 30.0,
+        "stable_seconds": 90
+      },
+      "expected_alert_suffixes": [":relative_humidity_pct:threshold:high"],
+      "provenance": [
+        {
+          "source_id": "nongsaro-field-case-2026",
+          "source_class": "site_recipe",
+          "locator": "greenhouse ventilation context",
+          "note_ko": "환기와 습도 관리 방향 근거입니다."
+        },
+        {
+          "source_id": "synthetic:wasabi:simulation-policy:v1",
+          "source_class": "synthetic_assumption",
+          "note_ko": "출력 저하율과 회복시간은 시연용 합성값입니다."
+        }
+      ]
+    },
+    {
+      "scenario_id": "ec_drift",
+      "name_ko": "관수 부족·공급 편차",
+      "description_ko": "관수 부족으로 배지 수분이 낮아지고 공급·배액 EC가 상승합니다.",
+      "category": "nutrition",
+      "sensor_effects": [
+        {"metric": "supply_ec_ds_m", "target_value": 2.75},
+        {"metric": "drain_ec_ds_m", "target_value": 3.05},
+        {"metric": "substrate_moisture_pct", "target_value": 48.0},
+        {"metric": "irrigation_flow_l_min", "target_value": 0.0},
+        {"metric": "irrigation_pressure_bar", "target_value": 0.15},
+        {"metric": "pump_current_a", "target_value": 0.08}
+      ],
+      "device_effects": [{
+        "device_id": "irrigation_pump",
+        "desired_value": false,
+        "reported_value": false,
+        "effective_value": false,
+        "health": "degraded",
+        "response_delay_seconds": 0
+      }],
+      "recovery": {"actions": ["start_irrigation_cycle"], "stable_seconds": 90},
+      "expected_alert_suffixes": [":supply_ec_ds_m:threshold:high", ":drain_ec_ds_m:threshold:high"],
+      "provenance": [
+        {
+          "source_id": "nongsaro-field-case-2026",
+          "source_class": "site_recipe",
+          "locator": "EC and fertigation ranges",
+          "note_ko": "공급 EC와 관수 관리 범위의 근거입니다."
+        },
+        {
+          "source_id": "synthetic:wasabi:simulation-policy:v1",
+          "source_class": "synthetic_assumption",
+          "note_ko": "편차 크기와 회복곡선은 시연용 합성값입니다."
+        }
+      ]
+    },
+    {
+      "scenario_id": "temperature_sensor_drift",
+      "name_ko": "온도 센서 이상",
+      "description_ko": "공기 온도 관측값에 편향이 누적됩니다.",
+      "category": "sensor",
+      "sensor_effects": [{
+        "metric": "air_temperature_c",
+        "target_value": 23.0,
+        "mode": "delta",
+        "quality": "suspect"
+      }],
+      "device_effects": [],
+      "recovery": {"actions": ["recalibrate_air_temperature_sensor"], "stable_seconds": 90},
+      "expected_alert_suffixes": [":air_temperature_c:sensor-health"],
+      "provenance": [{
+        "source_id": "synthetic:wasabi:simulation-policy:v1",
+        "source_class": "synthetic_assumption",
+        "locator": "sensor-health scenario",
+        "note_ko": "편향 크기와 회복시간은 센서 이상 시연용 합성값입니다."
+      }]
+    },
+    {
+      "scenario_id": "tank_low",
+      "name_ko": "양액 탱크 저수위",
+      "description_ko": "양액 탱크 수위가 운영 하한 아래로 내려갑니다.",
+      "category": "irrigation",
+      "sensor_effects": [{"metric": "tank_level_pct", "target_value": 14.0}],
+      "device_effects": [],
+      "recovery": {
+        "actions": [],
+        "stable_seconds": 90,
+        "manual_action_ko": "양액 탱크를 보충하고 수위 센서를 확인합니다."
+      },
+      "expected_alert_suffixes": [":tank_level_pct:threshold:low"],
+      "provenance": [{
+        "source_id": "synthetic:wasabi:simulation-policy:v1",
+        "source_class": "synthetic_assumption",
+        "note_ko": "저수위 장애와 복구 조건은 장치 대응 시연용 합성값입니다."
+      }]
+    },
+    {
+      "scenario_id": "ventilation_stuck",
+      "name_ko": "환기창 고착",
+      "description_ko": "개방 명령과 달리 환기창 실제 개도가 낮게 유지됩니다.",
+      "category": "equipment",
+      "sensor_effects": [{"metric": "relative_humidity_pct", "target_value": 90.0}],
+      "device_effects": [{
+        "device_id": "roof_vent",
+        "desired_value": 70.0,
+        "reported_value": 5.0,
+        "effective_value": 5.0,
+        "health": "fault"
+      }],
+      "recovery": {
+        "actions": ["set_side_vent_open_percent", "set_circulation_fan_percent"],
+        "minimum_percentage": 30.0,
+        "stable_seconds": 90
+      },
+      "expected_alert_suffixes": [":relative_humidity_pct:threshold:high"],
+      "provenance": [{
+        "source_id": "synthetic:wasabi:simulation-policy:v1",
+        "source_class": "synthetic_assumption",
+        "note_ko": "창 고착과 대체 환기 대응을 위한 합성 장애입니다."
+      }]
+    },
+    {
+      "scenario_id": "sensor_dropout",
+      "name_ko": "근권 온도 센서 결측",
+      "description_ko": "근권 온도 센서가 관측값을 보내지 않습니다.",
+      "category": "sensor",
+      "sensor_effects": [{
+        "metric": "root_zone_temperature_c",
+        "target_value": 0.0,
+        "quality": "missing"
+      }],
+      "device_effects": [],
+      "recovery": {
+        "actions": [],
+        "stable_seconds": 90,
+        "manual_action_ko": "근권 온도 센서 전원·배선·통신을 점검하고 교체합니다."
+      },
+      "expected_alert_suffixes": [":root_zone_temperature_c:data-quality"],
+      "provenance": [{
+        "source_id": "synthetic:wasabi:simulation-policy:v1",
+        "source_class": "synthetic_assumption",
+        "note_ko": "센서 결측과 데이터 품질 경보 검증용 합성 장애입니다."
+      }]
+    },
+    {
+      "scenario_id": "pump_flow_mismatch",
+      "name_ko": "펌프 작동·유량 불일치",
+      "description_ko": "펌프 전류는 높지만 유량이 낮아 배관 막힘을 나타냅니다.",
+      "category": "equipment",
+      "sensor_effects": [
+        {"metric": "pump_current_a", "target_value": 4.5},
+        {"metric": "irrigation_flow_l_min", "target_value": 0.8},
+        {"metric": "irrigation_pressure_bar", "target_value": 2.6}
+      ],
+      "device_effects": [{
+        "device_id": "irrigation_pump",
+        "desired_value": true,
+        "reported_value": true,
+        "effective_value": false,
+        "health": "degraded"
+      }],
+      "recovery": {
+        "actions": [],
+        "stable_seconds": 90,
+        "manual_action_ko": "관수 라인과 필터를 점검하고 막힘을 제거합니다."
+      },
+      "expected_alert_suffixes": [":irrigation-flow:crop-risk"],
+      "provenance": [{
+        "source_id": "synthetic:wasabi:simulation-policy:v1",
+        "source_class": "synthetic_assumption",
+        "note_ko": "펌프 피드백과 환경 효과 분리 검증용 합성 장애입니다."
+      }]
+    }
+  ]
+}

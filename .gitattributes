@@ -1,0 +1,6 @@
+* text=auto eol=lf
+# The QACT research release pins the SHA-256 of these exact bytes (CRLF included).
+services/api/app/research_retrieval_algorithm.py -text whitespace=cr-at-eol
+# The demo QACT release checksum is pinned in compose/tests; keep bytes stable.
+data/qact-profile/demo-release.json -text
+data/qact-profile/research-algorithm.json -text

@@ -1,0 +1,52 @@
+{
+  "suite_id": "smartfarm-qact-routing-v2",
+  "description": "QACT v2 release의 query segment, 허용 경로, 가중치와 Dense-only fallback 계약을 검증한다. 검색 효과 또는 현장 성능 비교가 아니다.",
+  "claim_status": "prototype_regression_only",
+  "cases": [
+    {
+      "id": "causal-root-temperature",
+      "question": "근권 온도가 상승한 원인은 무엇이고 산소 공급과 어떤 관계가 있는가?",
+      "expected_segment_id": "causal_relationship",
+      "expected_path": ["dense", "sparse", "graph"],
+      "expected_weights": {"dense": 0.55, "sparse": 0.25, "graph": 0.2},
+      "expected_graph_threshold": 0.62
+    },
+    {
+      "id": "causal-irrigation-pressure",
+      "question": "관수 유량과 압력이 함께 감소하는 원인을 설명해줘.",
+      "expected_segment_id": "causal_relationship",
+      "expected_path": ["dense", "sparse", "graph"],
+      "expected_weights": {"dense": 0.55, "sparse": 0.25, "graph": 0.2},
+      "expected_graph_threshold": 0.62
+    },
+    {
+      "id": "exact-ec-ph",
+      "question": "펄라이트 고설베드 EC와 pH 수치를 알려줘.",
+      "expected_segment_id": "exact_operational",
+      "expected_path": ["dense", "sparse"],
+      "expected_weights": {"dense": 0.62, "sparse": 0.38},
+      "expected_graph_threshold": 1.0
+    },
+    {
+      "id": "exact-sensor-device",
+      "question": "온도 센서와 냉각 장치 상태를 확인해줘.",
+      "expected_segment_id": "exact_operational",
+      "expected_path": ["dense", "sparse"],
+      "expected_weights": {"dense": 0.62, "sparse": 0.38},
+      "expected_graph_threshold": 1.0
+    },
+    {
+      "id": "semantic-default",
+      "question": "고추냉이 재배 자료를 요약해줘.",
+      "expected_segment_id": "semantic_default",
+      "expected_path": ["dense"],
+      "expected_weights": {"dense": 1.0},
+      "expected_graph_threshold": 1.0
+    }
+  ],
+  "fallback_cases": [
+    {"id": "missing", "profile_state": "missing", "expected_path": ["dense"]},
+    {"id": "invalid_checksum", "profile_state": "invalid", "expected_path": ["dense"]},
+    {"id": "expired", "profile_state": "expired", "expected_path": ["dense"]}
+  ]
+}
