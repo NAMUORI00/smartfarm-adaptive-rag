@@ -5,11 +5,17 @@
 ![SQLite](https://img.shields.io/badge/SQLite-source%20of%20truth-003B57?logo=sqlite&logoColor=white)
 ![Qdrant](https://img.shields.io/badge/Qdrant-vector-DC244C)
 ![FalkorDB](https://img.shields.io/badge/FalkorDB-graph-FF6F00)
-![tests](https://img.shields.io/badge/tests-249%20passed-0A9EDC?logo=pytest&logoColor=white)
+![React](https://img.shields.io/badge/React-19-61DAFB?logo=react&logoColor=black)
+![Three.js](https://img.shields.io/badge/Three.js-3D-000000?logo=threedotjs&logoColor=white)
+![tests](https://img.shields.io/badge/tests-254%20%2B%20318%20passed-0A9EDC?logo=pytest&logoColor=white)
+
+**▶ 대시보드 데모: https://namuori00.github.io/smartfarm-adaptive-rag/** — 2D 배치도, 3D 베드·설비 모형, 출처가 붙은 AI 상담, 설비 승인, 카메라 관제를 브라우저에서 바로 눌러 볼 수 있습니다. 기록해 둔 운영 데이터와 AI 응답을 재생하며 서버·AI·설비에는 연결되지 않습니다([`demo`](https://github.com/NAMUORI00/smartfarm-adaptive-rag/tree/demo) 브랜치).
 
 > **English summary.** Curated public showcase of a private research project on AI operations support for smart greenhouses.
 > It contains a retrieval core that picks Dense / Sparse / Graph search channels per question (QACT, published as a first-author KCI paper in 2026), abstains when evidence is weak,
 > and an MCP service where device changes run on a simulator only after explicit operator approval.
+> It also holds the operations dashboard (React, Three.js) and the core rule that rewrites only the parts of an answer resting on a sensor value that changed;
+> a recorded-replay demo of the dashboard runs on GitHub Pages: https://namuori00.github.io/smartfarm-adaptive-rag/
 
 ---
 
@@ -48,7 +54,9 @@
 | QACT 릴리스 계약 | 질문 유형·허용 채널·가중치·임계값을 담는 v2 JSON 스키마, 체크섬·만료일·스냅샷 해시 검증, 실패 시 Dense 안전 모드, 보정 릴리스 내보내기 도구 | [`demo-release.json`](data/qact-profile/demo-release.json), [`research_retrieval.py`](services/api/app/research_retrieval.py), [`export_research_qact.py`](tools/export_research_qact.py) | 검증되지 않은 설정이 운영 검색에 들어가지 않음. 개발/검증 데이터 분할이 겹치거나 품질 검증에 실패한 보정 결과는 내보내기 단계에서 거부 |
 | 승인형 제어 (FarmOps MCP) | MCP 도구 10개, 제안→승인→시뮬레이션→감사 상태 관리, 역할·내부 토큰·농장 헤더 검사, 같은 설비 중복 요청 차단, 응답 유실 시 1회 재전송과 결과 대조, W3C WoT 형식 장치 프로필 | [`services/farm-mcp/app/`](services/farm-mcp/app), [`mcp_client.py`](services/api/app/mcp_client.py), [`wasabi-greenhouse-v1.json`](data/device-manifests/wasabi-greenhouse-v1.json) | AI 응답이 설비 명령으로 바로 실행되는 경로가 없음. MCP가 응답하지 않으면 승인도 실행되지 않음 |
 | 온실 시뮬레이터 | 펄라이트 고설베드 고추냉이 온실 모델, 장치 조작과 센서 변화의 인과 연결, 임계값·센서 상태·작물 위험 경보 구분, 시나리오 10종, 가상 시계, SQLite 상태 저장, 외부 수집 데이터 사전 검증(dry-run) | [`services/telemetry/app/`](services/telemetry/app), [`wasabi-prototype-v1.json`](data/scenarios/wasabi-prototype-v1.json) | 실제 장비 없이 경보 발생 → 조치 제안 → 승인 → 환경 회복 흐름을 재현 |
-| 테스트·CI | 서비스별 회귀 테스트, 라우팅 기준 세트(golden suite), GitHub Actions | `services/*/tests/`, [`qact-routing-golden.json`](data/rag-eval/qact-routing-golden.json), [`ci.yml`](.github/workflows/ci.yml) | 249개 테스트 통과 |
+| 운영 대시보드 | 온실 2D 배치도와 AI 브리핑, 베드·설비 3D 모형(Three.js), 출처 번호가 붙은 상담, 설비 변경 확인·허용 카드, 카메라 관제, 자료실과 근거 원문 읽기, 한국어·영어, 기록 재생 데모 모드 | [`apps/web/`](apps/web), [`replay.ts`](apps/web/src/demo/replay.ts) | 서버 없이 GitHub Pages에서 동작하는 데모. 웹 테스트 318개 |
+| 선택적 답변 수정 | 답을 상태 설명·행동 안내·관측 근거로 나누고, 답하기 전에 각 부분이 기대는 관측을 선언해, 값이 바뀌면 그 값에 기대는 부분만 다시 쓰는 규칙 | [`answer_review_core.py`](services/api/app/answer_review_core.py) | 정상 범위 안의 흔들림은 무시하고, 범위 이탈·품질 이상·오래된 관측·처음 보는 값은 다시 확인 |
+| 테스트·CI | 서비스별 회귀 테스트, 라우팅 기준 세트(golden suite), 웹 테스트, GitHub Actions | `services/*/tests/`, `apps/web/src/*.test.ts`, [`qact-routing-golden.json`](data/rag-eval/qact-routing-golden.json), [`ci.yml`](.github/workflows/ci.yml) | Python 254개, 웹 318개 테스트 통과 |
 
 **AI 코딩 도구 사용**: 구현 과정에서 Codex와 Claude Code를 페어 프로그래밍 도구로 사용했습니다. 요구사항, 설계 결정, 안전 경계, 검증 기준은 직접 정했고 생성된 코드는 리뷰와 테스트로 확인했습니다.
 
@@ -56,12 +64,12 @@
 
 ## 시스템 구조
 
-점선 상자는 비공개 저장소에만 있는 구성 요소입니다.
+점선 상자는 비공개 저장소에만 있는 구성 요소입니다. 웹 콘솔은 이 저장소의 [`apps/web`](apps/web)이며, 비공개 제품 API 없이 볼 때는 기록 재생 모드로 동작합니다.
 
 ```mermaid
 flowchart LR
-    subgraph CLIENT["운영자 화면 · 비공개"]
-        WEB["웹 콘솔<br/>3D 농장 · 상담 · 승인 카드"]
+    subgraph CLIENT["운영자 화면 · apps/web"]
+        WEB["웹 콘솔<br/>2D 배치도 · 3D 농장 · 상담 · 승인 카드 · 카메라"]
     end
 
     subgraph PRODUCT["제품 API · FastAPI"]
@@ -93,7 +101,7 @@ flowchart LR
     MCP -->|"조회 · 시뮬레이션 명령"| TEL
 
     classDef private stroke-dasharray: 5 5;
-    class WEB,ADV private;
+    class ADV private;
 ```
 
 - **SQLite가 원본**이고 Qdrant·FalkorDB는 사본입니다. 사본이 없으면 SQLite에 저장한 벡터와 `chunk_terms` 테이블로 같은 계산을 합니다.
@@ -184,6 +192,37 @@ sequenceDiagram
 - MCP 도구는 조회 7개(`get_farm_snapshot`, `get_sensor_timeseries`, `list_alerts`, `list_farm_devices`, `get_device_capabilities`, `preview_control_impact`, `track_recent_executions`)와 변경 3개(`propose_control_action`, `approve_control_proposal`, `reject_control_proposal`)입니다. 도구 입력에는 `farm_id`가 없고, 농장 정보는 신뢰된 헤더로만 받습니다.
 - 장치 연결부는 `DeviceCommandAdapter` 인터페이스(`describe_capabilities → read_snapshot → request_command → read_command_status → confirm_outcome`)로 분리했습니다. 현재 구현은 시뮬레이터 어댑터 하나입니다.
 
+### 3. 센서 변화 기반 선택적 답변 수정
+
+상담한 뒤 센서 값이 바뀌면, 예전 답을 믿고 설비를 움직이는 실수가 생길 수 있습니다. [`answer_review_core.py`](services/api/app/answer_review_core.py)는 답을 세 부분(상태 설명, 행동 안내, 관측 근거)으로 나누고, 답을 만들기 **전에** 각 부분이 기대는 관측을 선언합니다. 이후 상태가 바뀌면 바뀐 값에 기대는 부분만 다시 씁니다. 생성된 문장을 읽고 판단하지 않습니다.
+
+```mermaid
+flowchart LR
+    S0["답할 때의 상태<br/>관측 · 장치 · 경보"] --> D["부분별 의존 선언<br/>declare_review()"]
+    D --> A["답변 저장"]
+    S1["새 상태"] --> C{"affected_units()<br/>바뀐 값과 의존 비교"}
+    A --> C
+    C -->|"관계없음"| K["그대로 유지"]
+    C -->|"해당 부분만"| R["그 부분만 다시 씀<br/>render_unit()"]
+    C -->|"처음 보는 값"| F["전체 다시 확인"]
+```
+
+- 현재 상태 질문은 정상 범위 안의 작은 흔들림을 무시하고 범위 이탈, 품질 이상, 5분 넘은 관측, 장치·경보 변화만 비교합니다. 재배 지식 질문은 센서 흔들림을 따라가지 않습니다.
+- 다른 구역의 변화는 이 답에 영향을 주지 않습니다. 시험은 [`test_answer_review_core.py`](services/api/tests/test_answer_review_core.py)에 있습니다.
+- 학위논문(작성 중)의 신규 연구이며, 이 저장소는 제품에 쓰는 구조화 규칙입니다. 자유 형식 LLM 문장의 선택적 수정 성능을 검증한 결과는 아닙니다.
+
+### 4. 운영 대시보드 ([`apps/web`](apps/web))
+
+| 화면 | 하는 일 |
+|---|---|
+| 2D 배치도 | 온실 두 구역, 베드 18개(단 4개), 설비실과 배관, 카메라 위치를 그림으로 보이고, AI가 고른 먼저 볼 곳에 번호를 찍습니다. |
+| 3D 모형 | 베드를 누르면 그 베드 하나를 3D로 보이고(단 선택, 생육 크기, 센서·배지·조명 단서), 설비를 누르면 냉각기·난방·펌프·환기팬·천창·차광막을 보고값대로 움직입니다. |
+| AI 상담 | 답 문장에 출처 번호를 붙이고, 누르면 근거 원문을 엽니다. 답이 만들어진 과정(검색 방법 비중, 후보 수)을 펼쳐 볼 수 있습니다. |
+| 설비 조절 | 변경 내용 확인 → 허용 → 장치 응답 → 회복 확인을 한 카드에서 보입니다. |
+| 카메라 관제 | 카메라 영상과 AI 자동 판독, 확인 기록과 근거 화면을 보입니다. 여러 카메라 중 근거가 보이는 화면을 고르는 연구는 [multiview-selective-vqa](https://github.com/NAMUORI00/multiview-selective-vqa)에 있습니다. |
+
+- **기록 재생 모드**: `VITE_DEMO_STATIC=1`로 빌드하면 모든 API 요청을 기록으로 답합니다([`replay.ts`](apps/web/src/demo/replay.ts)). 기록 데이터와 GitHub Pages 배포는 [`demo`](https://github.com/NAMUORI00/smartfarm-adaptive-rag/tree/demo) 브랜치에 있습니다.
+
 ## 연구 성과
 
 | 항목 | 내용 |
@@ -204,6 +243,17 @@ sequenceDiagram
 | 실행·검증 | Docker Compose, pytest, httpx, GitHub Actions |
 
 ## 실행 방법
+
+### 대시보드 데모 (브라우저만)
+
+설치 없이 https://namuori00.github.io/smartfarm-adaptive-rag/ 를 엽니다. 직접 띄우려면:
+
+```bash
+git switch demo
+cd apps/web && npm ci
+VITE_DEMO_STATIC=1 npm run dev   # 기록 재생 모드, http://localhost:3000
+```
+
 
 ```bash
 git clone https://github.com/NAMUORI00/smartfarm-adaptive-rag.git
@@ -265,27 +315,34 @@ curl http://127.0.0.1:8110/v1/audit/events "${H[@]}"
 cd services/api       && pip install -r requirements-dev.txt && python -m pytest -q
 cd ../farm-mcp        && pip install -r requirements-dev.txt && python -m pytest -q
 cd ../telemetry       && pip install -r requirements-dev.txt && python -m pytest -q
+cd ../../apps/web     && npm ci && npm test && npm run build
 ```
 
 | 서비스 | 테스트 수 | 주요 검증 내용 |
 |---|---|---|
-| `services/api` | 101 | 릴리스 검증·만료·변조 시 Dense 안전 모드, 라우팅 golden suite, 연구 알고리즘 경계값·해시 무결성, Graph 신뢰도 검사, 답변 보류, 재색인, MCP 클라이언트 |
+| `services/api` | 106 | 릴리스 검증·만료·변조 시 Dense 안전 모드, 라우팅 golden suite, 연구 알고리즘 경계값·해시 무결성, Graph 신뢰도 검사, 답변 보류, 재색인, MCP 클라이언트, 선택적 답변 수정 |
 | `services/farm-mcp` | 46 | 제안·승인·거절 상태 전이, 역할·토큰 검사, 감사 기록, 장치 어댑터, JSON-RPC 도구 |
 | `services/telemetry` | 102 | 장치 조작에 따른 센서 변화, 경보 발생·해제, 상태 저장, 다운샘플링, 수집 데이터 검증 |
+| `apps/web` | 318 | AI 브리핑 순위, 경보·설비 상태 문구, 카메라 판독 표시, 상담 근거 묶음, 생육 표현, 기록 재생 규칙 |
 
-- 2026-10-09 로컬(Windows, Python 3.13)에서 249개 모두 통과했습니다. CI는 Python 3.12에서 세 서비스를 각각 실행합니다.
+- 2026-10-09 로컬(Windows)에서 Python 254개와 웹 318개가 모두 통과했습니다. CI는 Python 3.12에서 세 서비스를, Node 22에서 웹을 실행합니다.
 - 테스트는 소프트웨어 회귀 검증입니다. 현장 검색 품질이나 물리 장치 안전성을 검증한 결과는 아닙니다.
 
 ## 디렉터리 구조
 
 ```text
 smartfarm-adaptive-rag/
+├── apps/web/                 # 운영 대시보드 (React · Three.js · Vite)
+│   ├── src/farmer/           # 배치도 · 3D · 상담 · 설비 · 카메라 · 자료실 화면
+│   ├── src/demo/             # 기록 재생 모드 (demo 브랜치의 기록으로 동작)
+│   └── public/models/        # 고설베드 온실 3D 모형 (glTF)
 ├── services/
 │   ├── api/                  # 제품 API 중 검색 코어만 발췌 (main.py 제외)
 │   │   ├── app/
 │   │   │   ├── knowledge.py                    # 문서 저장·QACT 로딩·3채널 검색·융합·답변 보류
 │   │   │   ├── research_retrieval_algorithm.py # 연구 라우팅 함수 (해시 고정, CRLF 유지)
 │   │   │   ├── research_retrieval.py           # 연구 정책 검증, 스냅샷 해시, 릴리스 내보내기
+│   │   │   ├── answer_review_core.py           # 센서 변화 기반 선택적 답변 수정 규칙
 │   │   │   ├── mcp_client.py                   # 제품 API → FarmOps MCP 클라이언트
 │   │   │   └── research_embedding.py · agent_state.py · pdf_extractor.py
 │   │   └── tests/
@@ -314,7 +371,9 @@ smartfarm-adaptive-rag/
 ## 공개 범위 안내
 
 - 비공개 연구 저장소에서 **직접 작성한 핵심 코드만 골라 정리한 공개용 쇼케이스**입니다. 커밋 이력은 원본 개발 이력이 아닙니다.
-- 웹 콘솔(TypeScript·React·Three.js), 제품 API의 상담·에이전트 처리(`main.py`), 영상 연구, 학위논문 원고, 실험 산출물은 포함하지 않았습니다. 따라서 이 저장소만으로 전체 제품을 실행할 수는 없습니다.
+- 제품 API의 상담·에이전트 처리(`main.py`), 학위논문 원고, 실험 산출물은 포함하지 않았습니다. 따라서 이 저장소만으로 실시간 제품을 실행할 수는 없고, 대시보드는 기록 재생 모드로 동작합니다.
+- 영상 연구(근거가 충분할 때만 답하는 다중 시점 CCTV 질의응답)는 [multiview-selective-vqa](https://github.com/NAMUORI00/multiview-selective-vqa)에 있습니다.
+- 데모의 카메라 영상은 예시 사진을 첫 장면으로 영상 생성 AI(Wan 2.2 TI2V-5B, Apache-2.0)가 만든 장면이고, 공개 데이터셋(AIHub 다시점 CCTV) 화면은 연구 흐름에 쓰인 일부만 실었습니다. 재배 자료는 목록과 답변이 인용한 쪽만 실었습니다.
 - 모든 센서와 설비는 시뮬레이터입니다. 실제 장비에는 연결하지 않습니다.
 - 라이선스: 별도 라이선스 없음 (열람 목적 공개)
 

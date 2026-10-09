@@ -1,6 +1,7 @@
 # Runnable subset of the private repository: telemetry simulator + FarmOps MCP.
-# The product API (advisor/LLM orchestration) and the web console are not part
-# of this public showcase. Nothing here talks to physical equipment.
+# The product API (advisor/LLM orchestration) is not part of this public showcase;
+# the web console (apps/web) runs on its own in recorded-replay mode (demo branch).
+# Nothing here talks to physical equipment.
 name: smartfarm-showcase
 
 services:

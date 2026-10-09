@@ -1,0 +1,36 @@
+.field-entry { padding: 20px 24px; display: flex; align-items: center; justify-content: space-between; gap: 20px; }
+.field-entry h2 { font-size: 18px; margin: 6px 0; }
+.field-entry p, .field-note { font-size: 14px; color: #65716a; margin: 4px 0; }
+.field-eyebrow { color: #68786f; font-size: 13px; }
+.field-inspection { position: fixed; inset: 0 0 0 auto; margin: 0; padding: 0; width: min(760px, 92vw); height: 100dvh; max-height: 100dvh; max-width: 100vw; border: 0; background: #fafbf9; color: #243c32; box-shadow: -12px 0 50px #142d2420; }
+.field-inspection::backdrop { background: #142d244d; }
+.field-inspection-inner { height: 100%; display: flex; flex-direction: column; }
+.field-inspection-header, .field-inspection-footer { flex: none; display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 18px 24px; background: #fff; }
+.field-inspection-header { border-bottom: 1px solid #dde4de; }
+.field-inspection-header h2 { margin: 4px 0 0; font-size: 22px; }
+.field-inspection-body { overflow-y: auto; padding: 24px; display: grid; gap: 24px; }
+.field-inspection-body > * { min-width: 0; }
+.field-inspection h3 { font-size: 16px; margin: 0 0 12px; }
+.field-inspection p { font-size: 14px; line-height: 1.7; overflow-wrap: anywhere; }
+.field-inspection small { font-size: 12px; color: #66766e; }
+.field-situation { border-left: 3px solid #7b9a87; padding-left: 16px; }
+.field-situation h3 { margin-top: 8px; }
+.field-metrics { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 10px; }
+.field-metrics article { border: 1px solid #e0e6e1; border-radius: 8px; background: white; padding: 12px; min-width: 0; }
+.field-metrics article > span { font-size: 13px; display: block; overflow-wrap: anywhere; }
+.field-metrics strong { display: block; font-size: 23px; margin-top: 6px; }
+.field-metrics em { color: #a94e25; font-size: 12px; font-style: normal; }
+.field-devices { margin: 12px 0 0; }
+.field-devices > div { display: flex; justify-content: space-between; gap: 16px; padding: 10px 0; border-bottom: 1px solid #e4e9e5; font-size: 14px; }
+.field-devices dd { margin: 0; text-align: right; overflow-wrap: anywhere; }
+.field-camera-empty { border: 1px dashed #bfcac3; padding: 18px; border-radius: 8px; }
+.field-inspection details > summary { cursor: pointer; font-size: 14px; padding: 12px 0; }
+.field-inspection .field-camera-layout { grid-template-columns: 1fr; }
+.field-inspection .camera-filmstrip { max-height: 240px; overflow: auto; }
+.field-inspection-footer { border-top: 1px solid #dde4de; }
+.field-inspection button.primary-button, .field-inspection button.secondary-button, .field-entry button { min-height: 42px; padding: 10px 16px; border: 1px solid #cbd8cf; border-radius: 8px; background: #fff; color: #284c3e; font-size: 14px; cursor: pointer; }
+.field-inspection button.primary-button { color: #fff; background: #285e4a; border-color: #285e4a; }
+.field-inspection button:disabled { opacity: .5; cursor: not-allowed; }
+.field-inspection button:focus-visible { outline: 2px solid #377962; outline-offset: 3px; }
+.field-alert-entry { display: flex; justify-content: flex-end; padding: 0 12px 10px; }
+@media(max-width: 600px) { .field-inspection { width: 100vw; } .field-inspection-body { padding: 16px; } .field-inspection-header, .field-inspection-footer { padding: 16px; } .field-entry { padding: 16px; flex-wrap: wrap; } }

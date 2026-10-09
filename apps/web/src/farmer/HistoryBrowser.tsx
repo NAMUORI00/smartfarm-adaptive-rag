@@ -1,0 +1,20 @@
+import {useEffect,useState,useRef} from "react";
+import type {FarmLayout} from "../farm-spatial";
+import {farmRequest} from "../farm-spatial";
+import type {FarmId} from "../types";
+import { stamp as formatSensorUpdateTime } from "./time-format";
+import { L, place as placeName } from "./i18n";
+type Event={id:string;event_type:string;created_at:string;details:Record<string,unknown>};
+export function HistoryBrowser({farmId,zoneId,layout}:{farmId:FarmId;zoneId?:string|null;layout?:FarmLayout|null}){
+  const [events,setEvents]=useState<Event[]>([]),[cursor,setCursor]=useState<number|null>(null),[kind,setKind]=useState("all"),[date,setDate]=useState(""),[error,setError]=useState("");
+  const [place,setPlace]=useState(zoneId??""),[tier,setTier]=useState("");
+  const generation=useRef(0);
+  const [busy,setBusy]=useState(false);
+  useEffect(()=>{let active=true;generation.current++;setEvents([]);setCursor(null);setBusy(true);
+    void fetchPage().then(v=>{if(active){setEvents(v.events);setCursor(v.next_cursor);setError("");}}).catch(()=>{if(active)setError(L("기록 연결을 확인하세요.","Check the records connection."));}).finally(()=>{if(active)setBusy(false);});return()=>{active=false;};
+  },[farmId,place,tier,kind,date]);
+  function fetchPage(next?:number){const query=new URLSearchParams({kind});if(place)query.set(place.startsWith("bed-")?"bed_id":"zone_id",place);if(tier)query.set("tier",tier);if(next)query.set("cursor",String(next));if(date){const from=new Date(date+"T00:00:00+09:00");query.set("since",from.toISOString());query.set("until",new Date(from.getTime()+86400000).toISOString());}return farmRequest<{events:Event[];next_cursor:number|null}>(farmId,`/v1/operations/history?${query}`);}
+  async function more(){if(!cursor||busy)return;setBusy(true);const current=generation.current;try{const v=await fetchPage(cursor);if(current!==generation.current)return;setEvents(e=>[...e,...v.events]);setCursor(v.next_cursor);}catch{setError(L("기록을 더 불러오지 못했습니다.","Could not load more records."));}finally{if(current===generation.current)setBusy(false);}}
+  return <section><h3>{L("작업 이력 찾아보기","Browse work history")}</h3><p>{L("보관된 최근 5,000건 범위에서 조회합니다.","Searches the latest 5,000 stored records.")}</p><label>{L("작업 종류","Work type")}<select value={kind} onChange={e=>setKind(e.target.value)}><option value="all">{L("모든 작업","All work")}</option><option value="control">{L("설비 조절","Equipment control")}</option><option value="cultivation">{L("재배·수확","Cultivation and harvest")}</option><option value="advisor">{L("AI 자문","AI advice")}</option></select></label><label>{L("위치","Location")}<select value={place} onChange={e=>{setPlace(e.target.value);setTier("");}}><option value="">{L("농장 전체","Whole farm")}</option>{layout?.zones.map(z=><option key={z.id} value={z.id}>{placeName(z.label)}</option>)}{layout?.beds.map(b=><option key={b.id} value={b.id}>{placeName(b.label)}</option>)}</select></label>{place.startsWith("bed-")&&<label>{L("재배 층","Growing tier")}<select value={tier} onChange={e=>setTier(e.target.value)}><option value="">{L("모든 단","All tiers")}</option>{[1,2,3,4].map(t=><option key={t} value={t}>{L(`${t}단`,`Tier ${t}`)}</option>)}</select></label>}<label>{L("날짜 (한국 시간)","Date (Korea time)")}<input type="date" value={date} onChange={e=>setDate(e.target.value)}/></label><button onClick={()=>setDate("")}>{L("날짜 제한 해제","Clear date filter")}</button>
+    {events.map(e=><article key={e.id}><strong>{e.event_type.includes("cultivation")?L("재배·수확 기록","Cultivation and harvest record"):e.event_type.includes("control")?L("설비 조절 기록","Equipment control record"):e.event_type.includes("advisor")?L("AI 자문 기록","AI advice record"):L("운영 기록","Operations record")}</strong><p>{formatSensorUpdateTime(e.created_at)}</p><p>{String(e.details.note??e.details.rationale??L("상세 결과는 연결된 작업 기록에서 확인하세요.","See the linked work record for details."))}</p></article>)}{!events.length&&!busy&&<p>{L("조건에 맞는 기록이 없습니다.","No records match these filters.")}</p>}{cursor&&<button disabled={busy} onClick={()=>void more()}>{L("이전 기록 더 보기","Show older records")}</button>}{error&&<p role="alert">{error}</p>}</section>;
+}
