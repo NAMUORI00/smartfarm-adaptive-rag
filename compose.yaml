@@ -1,0 +1,47 @@
+# Runnable subset of the private repository: telemetry simulator + FarmOps MCP.
+# The product API (advisor/LLM orchestration) and the web console are not part
+# of this public showcase. Nothing here talks to physical equipment.
+name: smartfarm-showcase
+
+services:
+  telemetry:
+    build:
+      context: ./services/telemetry
+    environment:
+      TELEMETRY_INTERNAL_TOKEN: ${TELEMETRY_INTERNAL_TOKEN:-local-development-token}
+      CROP_PROFILE_PATH: /app/data/crop-profiles/perlite-leaf-kr-v1.json
+      SCENARIO_PACK_PATH: /app/data/scenarios/wasabi-prototype-v1.json
+      TELEMETRY_STATE_PATH: /app/runtime/telemetry.db
+    volumes:
+      - ./data/crop-profiles:/app/data/crop-profiles:ro
+      - ./data/scenarios:/app/data/scenarios:ro
+      - telemetry_state:/app/runtime
+    ports:
+      - "127.0.0.1:${TELEMETRY_PORT:-8120}:8001"
+    healthcheck:
+      test: ["CMD", "python", "-c", "from urllib.request import urlopen; urlopen('http://localhost:8001/health', timeout=2)"]
+      interval: 10s
+      timeout: 3s
+      retries: 10
+
+  farm-mcp:
+    build:
+      context: ./services/farm-mcp
+    environment:
+      TELEMETRY_BASE_URL: http://telemetry:8001
+      TELEMETRY_INTERNAL_TOKEN: ${TELEMETRY_INTERNAL_TOKEN:-local-development-token}
+      MCP_SERVICE_TOKEN: ${MCP_SERVICE_TOKEN:-local-mcp-development-token}
+      FARM_MCP_STATE_PATH: /app/runtime/farm-mcp-state.json
+      DEVICE_MANIFEST_PATH: /app/data/device-manifests/wasabi-greenhouse-v1.json
+    volumes:
+      - ./data/device-manifests:/app/data/device-manifests:ro
+      - farm_mcp_state:/app/runtime
+    ports:
+      - "127.0.0.1:${MCP_PORT:-8110}:8002"
+    depends_on:
+      telemetry:
+        condition: service_healthy
+
+volumes:
+  telemetry_state:
+  farm_mcp_state:

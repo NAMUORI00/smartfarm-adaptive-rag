@@ -1,0 +1,56 @@
+{
+  "schema_version": "smartfarm-qact-release-v2",
+  "profile_id": "smartfarm-local-demo-qact-v2",
+  "source_provenance": "Versioned local prototype release derived from deterministic retrieval regression fixtures. It is not field validation or a research-effect claim.",
+  "expires_at": "2027-12-31T00:00:00Z",
+  "snapshot_hashes": {
+    "corpus": "6847ddd2542d5840eab2055d2e7a46abeebff54e8a0d1f846118a2c17b4e54ab",
+    "embedding": "4c5355d8cfe9b94d4e48804f3981ebb289099a6742b709bbfdc8eb1c3ed19057",
+    "graph": "949bf05cb81f5fc9854580d6592eb5db1b8108049a0ec48be0a7eaf8bc1e94be"
+  },
+  "query_segments": [
+    {
+      "segment_id": "causal_relationship",
+      "match_any": ["왜", "원인", "영향", "관계", "상호작용", "연결"],
+      "allowed_path": ["dense", "sparse", "graph"],
+      "channel_weights": {
+        "dense": 0.55,
+        "sparse": 0.25,
+        "graph": 0.2
+      },
+      "graph_reliability_threshold": 0.62,
+      "route_reason": "관계형 질문이므로 원문 span으로 검증되는 경우에만 Graph 근거를 Dense·Sparse와 함께 사용합니다."
+    },
+    {
+      "segment_id": "exact_operational",
+      "match_any": ["ec", "ph", "co2", "co₂", "°c", "온도", "습도", "센서", "장치", "펌프", "유량", "압력", "관수", "환기"],
+      "allowed_path": ["dense", "sparse"],
+      "channel_weights": {
+        "dense": 0.62,
+        "sparse": 0.38
+      },
+      "graph_reliability_threshold": 1.0,
+      "route_reason": "수치·설비 용어를 보존하기 위해 Dense 기준선에 Sparse 검색을 추가합니다."
+    },
+    {
+      "segment_id": "semantic_default",
+      "match_any": [],
+      "allowed_path": ["dense"],
+      "channel_weights": {
+        "dense": 1.0
+      },
+      "graph_reliability_threshold": 1.0,
+      "route_reason": "강한 Dense 기준선을 유지하는 기본 의미검색 경로입니다."
+    }
+  ],
+  "fallback": {
+    "allowed_path": ["dense"],
+    "channel_weights": {
+      "dense": 1.0
+    },
+    "route_reason": "프로파일이 없거나 유효하지 않으면 Graph와 Sparse를 사용하지 않고 Dense-only로 후퇴합니다."
+  },
+  "evaluation_scope": "Deterministic local wasabi corpus regression only.",
+  "evaluation_status": "prototype_regression_only_not_research_effect",
+  "release_note": "Graph output is admitted only after source-span provenance and graph-harm reliability checks."
+}

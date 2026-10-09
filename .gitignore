@@ -1,0 +1,21 @@
+# Local secrets and runtime state
+.env
+.env.local
+*.local
+runtime/
+tmp/
+*.sqlite3
+*.db
+
+# Python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.venv/
+venv/
+
+# OS/editor
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/

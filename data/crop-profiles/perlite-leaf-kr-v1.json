@@ -1,0 +1,65 @@
+{
+  "profile_id": "perlite_leaf_kr_v1",
+  "display_name": "국내 펄라이트 고설베드 잎 생산",
+  "crop": "고추냉이",
+  "cultivation_system": "perlite_high_bed_fertigation",
+  "target_organ": "leaf_and_petiole",
+  "cultivar": "demo_cultivar_pending_site_confirmation",
+  "growth_stage": "vegetative",
+  "production_goal": "잎·잎자루 연중 생산",
+  "status": "prototype_site_recipe",
+  "recipe_version": "2026.07-demo.1",
+  "thresholds": [
+    {
+      "metric": "air_temperature_c",
+      "target": [8.0, 18.0],
+      "warning": [6.0, 20.0],
+      "unit": "°C",
+      "authority": "site_recipe",
+      "source_id": "nongsaro-field-case-2026",
+      "review_status": "field_reference"
+    },
+    {
+      "metric": "relative_humidity_pct",
+      "target": [60.0, 70.0],
+      "warning": [55.0, 78.0],
+      "unit": "%",
+      "authority": "site_recipe",
+      "source_id": "nongsaro-field-case-2026",
+      "review_status": "field_reference"
+    },
+    {
+      "metric": "supply_ec_ds_m",
+      "target": [1.8, 2.4],
+      "warning": [1.6, 2.6],
+      "unit": "dS/m",
+      "authority": "site_recipe",
+      "source_id": "nongsaro-field-case-2026",
+      "review_status": "field_reference"
+    },
+    {
+      "metric": "supply_ph",
+      "target": [6.0, 6.4],
+      "warning": [5.7, 6.7],
+      "unit": "pH",
+      "authority": "site_recipe",
+      "source_id": "nongsaro-field-case-2026",
+      "review_status": "field_reference"
+    }
+  ],
+  "simulator_policy": {
+    "evaluation": "duration_and_hysteresis",
+    "trigger_duration_seconds": 10,
+    "clear_duration_seconds": 15,
+    "hysteresis_ratio": 0.03,
+    "zones": ["zone-a", "zone-b"],
+    "max_combined_faults": 2,
+    "note": "경보는 짧은 단일 샘플이 아니라 지속시간과 해소 히스테리시스를 적용합니다. 시간과 계수는 시제품 검증용 합성 정책이며 현장 recipe로 교체할 수 있습니다."
+  },
+  "source": {
+    "title": "스마트팜 시설로 고추냉이 잎 연중 생산",
+    "issuer": "농사로 농업기술포털",
+    "year": 2026,
+    "url": "https://www.nongsaro.go.kr/portal/ps/psx/psxs/newsMainView.ps?menuId=PS65437&newsSeqNo=133743"
+  }
+}
