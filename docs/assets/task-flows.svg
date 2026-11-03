@@ -1,0 +1,96 @@
+<svg width="1280" height="580" viewBox="0 0 1280 580" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="문서 상담, 상태 기반 답변, 영상 확인, 설비 조절 네 업무가 각자 다른 근거와 판단 시점으로 처리되는 흐름">
+<title>업무별 처리 흐름</title>
+<text x="200.0" y="36.0" fill="#2f81f7" font-size="23" font-weight="800" text-anchor="middle" dominant-baseline="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Apple SD Gothic Neo', 'Malgun Gothic', 'Noto Sans KR', sans-serif">문서 상담</text>
+<rect x="173.5" y="58.0" width="53.0" height="28.0" rx="14.0" fill="none" stroke="#7d8590" stroke-opacity="0.7" stroke-width="1.2"/>
+<text x="200.0" y="73.0" fill="#7d8590" font-size="15" font-weight="500" text-anchor="middle" dominant-baseline="middle" font-family="ui-monospace, SFMono-Regular, Consolas, 'Liberation Mono', monospace">RAG</text>
+<text x="496.0" y="36.0" fill="#2f81f7" font-size="23" font-weight="800" text-anchor="middle" dominant-baseline="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Apple SD Gothic Neo', 'Malgun Gothic', 'Noto Sans KR', sans-serif">상태 기반 답변</text>
+<rect x="474.0" y="58.0" width="44.0" height="28.0" rx="14.0" fill="none" stroke="#7d8590" stroke-opacity="0.7" stroke-width="1.2"/>
+<text x="496.0" y="73.0" fill="#7d8590" font-size="15" font-weight="500" text-anchor="middle" dominant-baseline="middle" font-family="ui-monospace, SFMono-Regular, Consolas, 'Liberation Mono', monospace">SR</text>
+<text x="792.0" y="36.0" fill="#2f81f7" font-size="23" font-weight="800" text-anchor="middle" dominant-baseline="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Apple SD Gothic Neo', 'Malgun Gothic', 'Noto Sans KR', sans-serif">영상 확인</text>
+<rect x="765.5" y="58.0" width="53.0" height="28.0" rx="14.0" fill="none" stroke="#7d8590" stroke-opacity="0.7" stroke-width="1.2"/>
+<text x="792.0" y="73.0" fill="#7d8590" font-size="15" font-weight="500" text-anchor="middle" dominant-baseline="middle" font-family="ui-monospace, SFMono-Regular, Consolas, 'Liberation Mono', monospace">VLM</text>
+<text x="1088.0" y="36.0" fill="#2f81f7" font-size="23" font-weight="800" text-anchor="middle" dominant-baseline="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Apple SD Gothic Neo', 'Malgun Gothic', 'Noto Sans KR', sans-serif">설비 조절</text>
+<rect x="1061.5" y="58.0" width="53.0" height="28.0" rx="14.0" fill="none" stroke="#7d8590" stroke-opacity="0.7" stroke-width="1.2"/>
+<text x="1088.0" y="73.0" fill="#7d8590" font-size="15" font-weight="500" text-anchor="middle" dominant-baseline="middle" font-family="ui-monospace, SFMono-Regular, Consolas, 'Liberation Mono', monospace">MCP</text>
+<line x1="16.0" y1="100.0" x2="1264.0" y2="100.0" stroke="#7d8590" stroke-width="1" stroke-opacity="0.28" stroke-linecap="round"/>
+<rect x="60.0" y="124.0" width="280.0" height="56.0" rx="14" fill="none" stroke="#7d8590" stroke-opacity="0.6" stroke-width="1.6"/>
+<g transform="translate(76.0,140.0) scale(1.000)" stroke="#7d8590" stroke-width="1.90" stroke-linecap="round" stroke-linejoin="round" fill="none"><path d="M2,3 h18 a3,3 0 0 1 3,3 v9 a3,3 0 0 1 -3,3 h-11 l-5,4 v-4 h-2 a3,3 0 0 1 -3,-3 v-9 a3,3 0 0 1 3,-3 z M7,9 h10 M7,13 h6"/></g>
+<text x="220.0" y="153.0" fill="#7d8590" font-size="18" font-weight="700" text-anchor="middle" dominant-baseline="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Apple SD Gothic Neo', 'Malgun Gothic', 'Noto Sans KR', sans-serif">질의</text>
+<path d="M200.0,184.0 L200.0,206.0" stroke="#7d8590" stroke-opacity="0.9" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M195.8,198.1 L200.0,206.0 L204.2,198.1" stroke="#7d8590" stroke-opacity="0.9" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="60.0" y="210.0" width="280.0" height="56.0" rx="14" fill="none" stroke="#7d8590" stroke-opacity="0.6" stroke-width="1.6"/>
+<g transform="translate(76.0,226.0) scale(1.000)" stroke="#7d8590" stroke-width="1.90" stroke-linecap="round" stroke-linejoin="round" fill="none"><path d="M5,5 a2,2 0 1 0 0.01,0 z M19,5 a2,2 0 1 0 0.01,0 z M12,19 a2,2 0 1 0 0.01,0 z M6.5,6.5 L11,17.5 M17.5,6.5 L13,17.5 M7,5 h10"/></g>
+<text x="220.0" y="239.0" fill="#7d8590" font-size="18" font-weight="700" text-anchor="middle" dominant-baseline="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Apple SD Gothic Neo', 'Malgun Gothic', 'Noto Sans KR', sans-serif">채널 참여 결정 (QACT)</text>
+<path d="M200.0,270.0 L200.0,292.0" stroke="#7d8590" stroke-opacity="0.9" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M195.8,284.1 L200.0,292.0 L204.2,284.1" stroke="#7d8590" stroke-opacity="0.9" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="60.0" y="296.0" width="280.0" height="56.0" rx="14" fill="none" stroke="#7d8590" stroke-opacity="0.6" stroke-width="1.6"/>
+<g transform="translate(76.0,312.0) scale(1.000)" stroke="#7d8590" stroke-width="1.90" stroke-linecap="round" stroke-linejoin="round" fill="none"><path d="M10,3 a7,7 0 1 0 0.01,0 z M15,15 l6,6"/></g>
+<text x="220.0" y="325.0" fill="#7d8590" font-size="18" font-weight="700" text-anchor="middle" dominant-baseline="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Apple SD Gothic Neo', 'Malgun Gothic', 'Noto Sans KR', sans-serif">검색과 가중 융합</text>
+<path d="M200.0,356.0 L200.0,378.0" stroke="#7d8590" stroke-opacity="0.9" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M195.8,370.1 L200.0,378.0 L204.2,370.1" stroke="#7d8590" stroke-opacity="0.9" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="60.0" y="382.0" width="280.0" height="56.0" rx="14" fill="none" stroke="#2f81f7" stroke-opacity="0.9" stroke-width="1.8"/>
+<g transform="translate(76.0,398.0) scale(1.000)" stroke="#2f81f7" stroke-width="1.90" stroke-linecap="round" stroke-linejoin="round" fill="none"><path d="M5,2 h9 l5,5 v15 h-14 z M14,2 v5 h5 M8,12 h8 M8,16 h8"/></g>
+<text x="220.0" y="411.0" fill="#2f81f7" font-size="18" font-weight="700" text-anchor="middle" dominant-baseline="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Apple SD Gothic Neo', 'Malgun Gothic', 'Noto Sans KR', sans-serif">답변 + 출처 번호</text>
+<rect x="356.0" y="124.0" width="280.0" height="56.0" rx="14" fill="none" stroke="#7d8590" stroke-opacity="0.6" stroke-width="1.6"/>
+<g transform="translate(372.0,140.0) scale(1.000)" stroke="#7d8590" stroke-width="1.90" stroke-linecap="round" stroke-linejoin="round" fill="none"><path d="M4,5 a8,3 0 1 0 16,0 a8,3 0 1 0 -16,0 v14 a8,3 0 0 0 16,0 v-14 M4,12 a8,3 0 0 0 16,0"/></g>
+<text x="516.0" y="153.0" fill="#7d8590" font-size="18" font-weight="700" text-anchor="middle" dominant-baseline="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Apple SD Gothic Neo', 'Malgun Gothic', 'Noto Sans KR', sans-serif">기준 상태 저장</text>
+<path d="M496.0,184.0 L496.0,206.0" stroke="#7d8590" stroke-opacity="0.9" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M491.8,198.1 L496.0,206.0 L500.2,198.1" stroke="#7d8590" stroke-opacity="0.9" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="356.0" y="210.0" width="280.0" height="56.0" rx="14" fill="none" stroke="#7d8590" stroke-opacity="0.6" stroke-width="1.6"/>
+<g transform="translate(372.0,226.0) scale(1.000)" stroke="#7d8590" stroke-width="1.90" stroke-linecap="round" stroke-linejoin="round" fill="none"><path d="M12,10 a2,2 0 1 0 0.01,0 z M7.8,7.8 a6,6 0 0 0 0,8.4 M16.2,7.8 a6,6 0 0 1 0,8.4 M4.9,4.9 a10,10 0 0 0 0,14.2 M19.1,4.9 a10,10 0 0 1 0,14.2"/></g>
+<text x="516.0" y="239.0" fill="#7d8590" font-size="18" font-weight="700" text-anchor="middle" dominant-baseline="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Apple SD Gothic Neo', 'Malgun Gothic', 'Noto Sans KR', sans-serif">상태 변화 비교</text>
+<path d="M496.0,270.0 L496.0,292.0" stroke="#7d8590" stroke-opacity="0.9" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M491.8,284.1 L496.0,292.0 L500.2,284.1" stroke="#7d8590" stroke-opacity="0.9" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="356.0" y="296.0" width="280.0" height="134.0" rx="14" fill="none" stroke="#7d8590" stroke-opacity="0.6" stroke-width="1.6"/>
+<text x="374.0" y="320.0" fill="#2f81f7" font-size="15" font-weight="700" text-anchor="start" dominant-baseline="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Apple SD Gothic Neo', 'Malgun Gothic', 'Noto Sans KR', sans-serif">결과</text>
+<g transform="translate(374.0,341.0) scale(0.750)" stroke="#7d8590" stroke-width="2.53" stroke-linecap="round" stroke-linejoin="round" fill="none"><path d="M12,2 a10,10 0 1 0 0.01,0 z M7,12 l3.5,3.5 L17,9"/></g>
+<text x="402.0" y="350.0" fill="#7d8590" font-size="15" font-weight="500" text-anchor="start" dominant-baseline="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Apple SD Gothic Neo', 'Malgun Gothic', 'Noto Sans KR', sans-serif">관련 없음: 답변 유지</text>
+<g transform="translate(374.0,371.0) scale(0.750)" stroke="#2f81f7" stroke-width="2.53" stroke-linecap="round" stroke-linejoin="round" fill="none"><path d="M13,2 l-9,12 h7 l-1,8 l9,-12 h-7 z"/></g>
+<text x="402.0" y="380.0" fill="#2f81f7" font-size="15" font-weight="600" text-anchor="start" dominant-baseline="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Apple SD Gothic Neo', 'Malgun Gothic', 'Noto Sans KR', sans-serif">관련 있음: 해당 부분만 수정</text>
+<g transform="translate(374.0,401.0) scale(0.750)" stroke="#7d8590" stroke-width="2.53" stroke-linecap="round" stroke-linejoin="round" fill="none"><path d="M2,3 h18 a3,3 0 0 1 3,3 v9 a3,3 0 0 1 -3,3 h-11 l-5,4 v-4 h-2 a3,3 0 0 1 -3,-3 v-9 a3,3 0 0 1 3,-3 z M7,9 h10 M7,13 h6"/></g>
+<text x="402.0" y="410.0" fill="#7d8590" font-size="15" font-weight="500" text-anchor="start" dominant-baseline="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Apple SD Gothic Neo', 'Malgun Gothic', 'Noto Sans KR', sans-serif">계속 변함: 새로 질문 안내</text>
+<rect x="652.0" y="124.0" width="280.0" height="56.0" rx="14" fill="none" stroke="#7d8590" stroke-opacity="0.6" stroke-width="1.6"/>
+<g transform="translate(668.0,140.0) scale(1.000)" stroke="#7d8590" stroke-width="1.90" stroke-linecap="round" stroke-linejoin="round" fill="none"><path d="M2,7 h14 v11 h-14 z M16,10 l6,-3 v11 l-6,-3"/></g>
+<text x="812.0" y="153.0" fill="#7d8590" font-size="18" font-weight="700" text-anchor="middle" dominant-baseline="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Apple SD Gothic Neo', 'Malgun Gothic', 'Noto Sans KR', sans-serif">질문과 후보 시점</text>
+<path d="M792.0,184.0 L792.0,206.0" stroke="#7d8590" stroke-opacity="0.9" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M787.8,198.1 L792.0,206.0 L796.2,198.1" stroke="#7d8590" stroke-opacity="0.9" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="652.0" y="210.0" width="280.0" height="56.0" rx="14" fill="none" stroke="#7d8590" stroke-opacity="0.6" stroke-width="1.6"/>
+<g transform="translate(668.0,226.0) scale(1.000)" stroke="#7d8590" stroke-width="1.90" stroke-linecap="round" stroke-linejoin="round" fill="none"><path d="M10,3 a7,7 0 1 0 0.01,0 z M15,15 l6,6"/></g>
+<text x="812.0" y="239.0" fill="#7d8590" font-size="18" font-weight="700" text-anchor="middle" dominant-baseline="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Apple SD Gothic Neo', 'Malgun Gothic', 'Noto Sans KR', sans-serif">근거 보일 시점 선택</text>
+<path d="M792.0,270.0 L792.0,292.0" stroke="#7d8590" stroke-opacity="0.9" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M787.8,284.1 L792.0,292.0 L796.2,284.1" stroke="#7d8590" stroke-opacity="0.9" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="652.0" y="296.0" width="280.0" height="56.0" rx="14" fill="none" stroke="#7d8590" stroke-opacity="0.6" stroke-width="1.6"/>
+<g transform="translate(668.0,312.0) scale(1.000)" stroke="#7d8590" stroke-width="1.90" stroke-linecap="round" stroke-linejoin="round" fill="none"><path d="M6,6 h12 v12 h-12 z M9,9 h6 v6 h-6 z M9,2 v4 M15,2 v4 M9,18 v4 M15,18 v4 M2,9 h4 M2,15 h4 M18,9 h4 M18,15 h4"/></g>
+<text x="812.0" y="325.0" fill="#7d8590" font-size="18" font-weight="700" text-anchor="middle" dominant-baseline="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Apple SD Gothic Neo', 'Malgun Gothic', 'Noto Sans KR', sans-serif">답변 또는 기권</text>
+<path d="M792.0,356.0 L792.0,378.0" stroke="#7d8590" stroke-opacity="0.9" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M787.8,370.1 L792.0,378.0 L796.2,370.1" stroke="#7d8590" stroke-opacity="0.9" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="652.0" y="382.0" width="280.0" height="104.0" rx="14" fill="none" stroke="#7d8590" stroke-opacity="0.6" stroke-width="1.6"/>
+<text x="670.0" y="406.0" fill="#2f81f7" font-size="15" font-weight="700" text-anchor="start" dominant-baseline="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Apple SD Gothic Neo', 'Malgun Gothic', 'Noto Sans KR', sans-serif">공개 기준</text>
+<g transform="translate(670.0,427.0) scale(0.750)" stroke="#2f81f7" stroke-width="2.53" stroke-linecap="round" stroke-linejoin="round" fill="none"><path d="M12,2 a10,10 0 1 0 0.01,0 z M7,12 l3.5,3.5 L17,9"/></g>
+<text x="698.0" y="436.0" fill="#2f81f7" font-size="15" font-weight="600" text-anchor="start" dominant-baseline="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Apple SD Gothic Neo', 'Malgun Gothic', 'Noto Sans KR', sans-serif">통과: 답 공개</text>
+<g transform="translate(670.0,457.0) scale(0.750)" stroke="#7d8590" stroke-width="2.53" stroke-linecap="round" stroke-linejoin="round" fill="none"><path d="M5,11 h14 v11 h-14 z M8,11 v-4 a4,4 0 0 1 8,0 v4"/></g>
+<text x="698.0" y="466.0" fill="#7d8590" font-size="15" font-weight="500" text-anchor="start" dominant-baseline="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Apple SD Gothic Neo', 'Malgun Gothic', 'Noto Sans KR', sans-serif">미달: 공개 보류</text>
+<rect x="948.0" y="124.0" width="280.0" height="56.0" rx="14" fill="none" stroke="#7d8590" stroke-opacity="0.6" stroke-width="1.6"/>
+<g transform="translate(964.0,140.0) scale(1.000)" stroke="#7d8590" stroke-width="1.90" stroke-linecap="round" stroke-linejoin="round" fill="none"><path d="M5,2 h9 l5,5 v15 h-14 z M14,2 v5 h5 M8,12 h8 M8,16 h8"/></g>
+<text x="1108.0" y="153.0" fill="#7d8590" font-size="18" font-weight="700" text-anchor="middle" dominant-baseline="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Apple SD Gothic Neo', 'Malgun Gothic', 'Noto Sans KR', sans-serif">조정안</text>
+<path d="M1088.0,184.0 L1088.0,206.0" stroke="#7d8590" stroke-opacity="0.9" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M1083.8,198.1 L1088.0,206.0 L1092.2,198.1" stroke="#7d8590" stroke-opacity="0.9" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="948.0" y="210.0" width="280.0" height="56.0" rx="14" fill="none" stroke="#7d8590" stroke-opacity="0.6" stroke-width="1.6"/>
+<g transform="translate(964.0,226.0) scale(1.000)" stroke="#7d8590" stroke-width="1.90" stroke-linecap="round" stroke-linejoin="round" fill="none"><path d="M12,3 a4,4 0 1 0 0.01,0 z M4,22 a8,7 0 0 1 16,0"/></g>
+<text x="1108.0" y="239.0" fill="#7d8590" font-size="18" font-weight="700" text-anchor="middle" dominant-baseline="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Apple SD Gothic Neo', 'Malgun Gothic', 'Noto Sans KR', sans-serif">운영자 허용</text>
+<path d="M1088.0,270.0 L1088.0,292.0" stroke="#7d8590" stroke-opacity="0.9" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M1083.8,284.1 L1088.0,292.0 L1092.2,284.1" stroke="#7d8590" stroke-opacity="0.9" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="948.0" y="296.0" width="280.0" height="56.0" rx="14" fill="none" stroke="#7d8590" stroke-opacity="0.6" stroke-width="1.6"/>
+<g transform="translate(964.0,312.0) scale(1.000)" stroke="#7d8590" stroke-width="1.90" stroke-linecap="round" stroke-linejoin="round" fill="none"><path d="M12,10 a2,2 0 1 0 0.01,0 z M7.8,7.8 a6,6 0 0 0 0,8.4 M16.2,7.8 a6,6 0 0 1 0,8.4 M4.9,4.9 a10,10 0 0 0 0,14.2 M19.1,4.9 a10,10 0 0 1 0,14.2"/></g>
+<text x="1108.0" y="325.0" fill="#7d8590" font-size="18" font-weight="700" text-anchor="middle" dominant-baseline="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Apple SD Gothic Neo', 'Malgun Gothic', 'Noto Sans KR', sans-serif">적용 직전 상태 재확인</text>
+<path d="M1088.0,356.0 L1088.0,378.0" stroke="#7d8590" stroke-opacity="0.9" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M1083.8,370.1 L1088.0,378.0 L1092.2,370.1" stroke="#7d8590" stroke-opacity="0.9" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="948.0" y="382.0" width="280.0" height="104.0" rx="14" fill="none" stroke="#7d8590" stroke-opacity="0.6" stroke-width="1.6"/>
+<text x="966.0" y="406.0" fill="#2f81f7" font-size="15" font-weight="700" text-anchor="start" dominant-baseline="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Apple SD Gothic Neo', 'Malgun Gothic', 'Noto Sans KR', sans-serif">실행</text>
+<g transform="translate(966.0,427.0) scale(0.750)" stroke="#2f81f7" stroke-width="2.53" stroke-linecap="round" stroke-linejoin="round" fill="none"><path d="M12,2 a10,10 0 1 0 0.01,0 z M7,12 l3.5,3.5 L17,9"/></g>
+<text x="994.0" y="436.0" fill="#2f81f7" font-size="15" font-weight="600" text-anchor="start" dominant-baseline="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Apple SD Gothic Neo', 'Malgun Gothic', 'Noto Sans KR', sans-serif">같음: 실행과 회복 확인</text>
+<g transform="translate(966.0,457.0) scale(0.750)" stroke="#d29922" stroke-width="2.53" stroke-linecap="round" stroke-linejoin="round" fill="none"><path d="M5,11 h14 v11 h-14 z M8,11 v-4 a4,4 0 0 1 8,0 v4"/></g>
+<text x="994.0" y="466.0" fill="#d29922" font-size="15" font-weight="600" text-anchor="start" dominant-baseline="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Apple SD Gothic Neo', 'Malgun Gothic', 'Noto Sans KR', sans-serif">달라짐: 실행하지 않음</text>
+<line x1="16.0" y1="512.0" x2="1264.0" y2="512.0" stroke="#7d8590" stroke-width="1" stroke-opacity="0.28" stroke-linecap="round"/>
+<text x="640.0" y="548.0" fill="#7d8590" font-size="16" font-weight="600" text-anchor="middle" dominant-baseline="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Apple SD Gothic Neo', 'Malgun Gothic', 'Noto Sans KR', sans-serif">네 업무는 같은 구역, 베드, 작업 이력을 공유하지만 근거를 가져오는 곳과 판단 시점이 다릅니다</text>
+</svg>
