@@ -21,7 +21,7 @@
 |---|---|
 | 개발 | 김유석 (제주대학교 대학원 석사과정). 연구부터 설계, 구현까지 1인 개발 (2026년 7월 ~ 10월) |
 | 운영 대상 | 고추냉이 온실 시뮬레이터: 2개 구역, 베드 18개(각 4단), 관측 항목 40개, 설비 16대, 카메라 4대 |
-| 연구 | 질의 적응형 검색 채널 제어: KCI 등재지 게재, 제1저자<br>근거 조건부 응답과 기권: IEEE Access 심사 중, 제1저자<br>센서 변화 기반 선택적 답변 수정: 석사학위논문 |
+| 연구 | 질의 적응형 검색 채널 제어: KCI 등재지 게재, 제1저자<br>근거 조건부 응답과 기권: IEEE Access Minor Revision, 제1저자<br>센서 변화 기반 선택적 답변 수정: 석사학위논문 |
 | 주요 결과 | 공개 검색 벤치마크 3종에서 nDCG@10이 고정 프로파일 적응 융합보다 0.023~0.087 높음(유의)<br>다시점 관제 영상에서 정답 공개율이 기권 프롬프트보다 41.2%p 높고, 선택된 가용 시점 260개에서 오답 공개 0건<br>전체 재생성과 같은 응답–상태 일치(110/110)를 유지하며 다시 생성하는 답변 단위 26.5% 감소 |
 | 구현 | 검색 코어, 승인형 설비 제어 서비스(MCP), 온실 시뮬레이터 (Python, FastAPI)<br>베드와 설비를 3D로 재현한 운영 대시보드 (React, Three.js)<br>자동 테스트 572개와 GitHub Actions CI |
 
@@ -85,7 +85,7 @@ React 19, TypeScript, Three.js로 만들었습니다. 온실 배치도와 AI 브
 | 연구 | 논문 | 상태 | 코드 |
 |---|---|---|---|
 | 질의 적응형 검색 채널 제어 | 김유석, 김용운, 변영철, 「스마트팜 RAG를 위한 질의 적응형 검색 채널 제어」, *한국정보기술학회논문지*, 24(6), pp. 99–108, 2026. [doi:10.14801/jkiit.2026.24.6.99](https://doi.org/10.14801/jkiit.2026.24.6.99) | KCI 등재지 게재, 제1저자 | 이 저장소 [`services/api`](services/api) |
-| 근거 조건부 응답과 기권 | 김유석, 김용운, 변영철, "Role-Separated Selective Response for Question Answering in Multi-View Video Surveillance", *IEEE Access* | 심사 중, 제1저자 | [multiview-selective-vqa](https://github.com/NAMUORI00/multiview-selective-vqa) |
+| 근거 조건부 응답과 기권 | 김유석, 김용운, 변영철, "Role-Separated Selective Response for Question Answering in Multi-View Video Surveillance", *IEEE Access* | Minor Revision, 제1저자 | [multiview-selective-vqa](https://github.com/NAMUORI00/multiview-selective-vqa) |
 | 선택적 답변 수정과 시스템 통합 | 김유석, 「적응형 검색과 선택적 답변 처리를 적용한 스마트팜 AI 운영 지원 시스템의 설계 및 구현」, 제주대학교 석사학위논문 | 2027년 2월 예정 | 이 저장소 |
 
 연구 배경과 관련 연구 비교, 참고문헌은 [docs/background.md](docs/background.md)에 있습니다.

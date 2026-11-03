@@ -48,7 +48,7 @@ export function studyReference(no: StudyNo): StudyReference {
         no,
         authors,
         title: "Role-Separated Selective Response for Question Answering in Multi-View Video Surveillance",
-        venue: L("IEEE Access, 심사 중", "IEEE Access, under review"),
+        venue: L("IEEE Access, Minor Revision", "IEEE Access, minor revision"),
       };
     default:
       return {
