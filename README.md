@@ -68,7 +68,7 @@ AI가 쓰는 설명과 설비 실행 권한을 분리했습니다. MCP 도구 10
 
 ![선택적 답변 수정 예](docs/images/study-revision-flow.png)
 
-답을 상태 설명, 행동 안내, 관측 근거로 나누고 각 부분이 기대는 관측을 미리 선언합니다. 상태가 바뀌면 그 값에 기대는 부분만 다시 써서, 전체 재생성과 같은 응답–상태 일치(110/110)를 유지하면서 다시 생성하는 답변 단위를 26.5% 줄였습니다. 연구 엔진과 평가는 [smartfarm-state-revalidation](https://github.com/NAMUORI00/smartfarm-state-revalidation)에 있습니다.
+답을 상태 설명, 행동 안내, 관측 근거로 나누고 각 부분이 기대는 관측을 미리 선언합니다. 상태가 바뀌면 그 값에 기대는 부분만 다시 써서, 전체 재생성과 같은 응답–상태 일치(110/110)를 유지하면서 다시 생성하는 답변 단위를 26.5% 줄였습니다.
 
 ### 4. 근거 조건부 영상 응답
 
@@ -86,7 +86,7 @@ React 19, TypeScript, Three.js로 만들었습니다. 온실 배치도와 AI 브
 |---|---|---|---|
 | 질의 적응형 검색 채널 제어 | 김유석, 김용운, 변영철, 「스마트팜 RAG를 위한 질의 적응형 검색 채널 제어」, *한국정보기술학회논문지*, 24(6), pp. 99–108, 2026. [doi:10.14801/jkiit.2026.24.6.99](https://doi.org/10.14801/jkiit.2026.24.6.99) | KCI 등재지 게재, 제1저자 | 이 저장소 [`services/api`](services/api) |
 | 근거 조건부 응답과 기권 | 김유석, 김용운, 변영철, "Role-Separated Selective Response for Question Answering in Multi-View Video Surveillance", *IEEE Access* | 심사 중, 제1저자 | [multiview-selective-vqa](https://github.com/NAMUORI00/multiview-selective-vqa) |
-| 선택적 답변 수정과 시스템 통합 | 김유석, 「적응형 검색과 선택적 답변 처리를 적용한 스마트팜 AI 운영 지원 시스템의 설계 및 구현」, 제주대학교 석사학위논문 | 2027년 2월 예정 | [smartfarm-state-revalidation](https://github.com/NAMUORI00/smartfarm-state-revalidation), 이 저장소 |
+| 선택적 답변 수정과 시스템 통합 | 김유석, 「적응형 검색과 선택적 답변 처리를 적용한 스마트팜 AI 운영 지원 시스템의 설계 및 구현」, 제주대학교 석사학위논문 | 2027년 2월 예정 | 이 저장소 |
 
 연구 배경과 관련 연구 비교, 참고문헌은 [docs/background.md](docs/background.md)에 있습니다.
 

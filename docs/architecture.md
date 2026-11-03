@@ -174,7 +174,7 @@ sequenceDiagram
 
 상담한 뒤 센서 값이 바뀌면 예전 답을 믿고 설비를 움직이는 실수가 생길 수 있습니다. [`answer_review_core.py`](../services/api/app/answer_review_core.py)는 답을 상태 설명, 행동 안내, 관측 근거의 세 부분으로 나누고, 답을 만들기 전에 각 부분이 기대는 관측을 선언해 둡니다. 나중에 상태가 바뀌면 바뀐 값에 기대는 부분만 다시 씁니다. 생성된 문장을 읽어 판단하지는 않습니다.
 
-이 저장소에는 그 규칙을 상담 답변에 붙인 제품 쪽 코드가 있습니다. 실행 직전 재확인 엔진, 비교 조건(B0, B1, B2, SR), 사전에 고정한 시나리오와 평가 산출물은 [smartfarm-state-revalidation](https://github.com/NAMUORI00/smartfarm-state-revalidation)에 있습니다.
+이 저장소에는 그 규칙을 상담 답변에 붙인 제품 쪽 코드가 있습니다. 실행 직전 재확인 엔진, 비교 조건(B0, B1, B2, SR), 사전에 고정한 시나리오와 평가 산출물은 비공개 연구 저장소에 있습니다.
 
 ```mermaid
 flowchart LR
